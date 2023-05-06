@@ -1,0 +1,19 @@
+{
+  "name": "controle-financas",
+  "version": "1.0.0",
+  "description": "A project of control and managment of pessoal finance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeitF/Controle-Financas.git"
+  },
+  "author": "Felipe Fazani;Flávio Barbosa;Nathan Fonseca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeitF/Controle-Financas/issues"
+  },
+  "homepage": "https://github.com/NeitF/Controle-Financas#readme"
+}
