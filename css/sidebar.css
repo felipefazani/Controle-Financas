@@ -1,22 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-* {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root {
     --tran-02: all 0.2s ease;
     --tran-03: all 0.3s ease;
     --tran-04: all 0.4s ease;
     --tran-05: all 0.5s ease;
-}
-
-body{
-    height: 100vh;
-    background: #cdd5e9;
 }
 
 .sidebar .text{
@@ -44,6 +30,7 @@ body{
     padding: 10px 14px;
     background: #FFF;
     transition: var(--tran-05);
+    z-index: 100;
 }
 
 .sidebar.close{
@@ -53,7 +40,6 @@ body{
 .sidebar.close .text{
     opacity: 0;
 }
-
 
 .sidebar li{
     height: 50px;
@@ -145,4 +131,22 @@ header .image-text .header-text{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.conteudo{
+    position: relative;
+    height: 100vh;
+    left:270px;
+    width: calc(100% - 270px);
+    transition: var(--tran-05);
+}
+
+.sidebar.close ~ .conteudo{
+    left:100px;
+    width: calc(100% - 100px);
+}
+
+ul{
+    margin: 0;
+    padding: 0;
 }
