@@ -12,6 +12,14 @@ body{
     background: #dde2f0;
 }
 
+h4{
+    color: #8c8c8c;
+}
+
+i{
+    color: #ffffff;
+}
+
 .botao{
     background: transparent;
     border: none;
@@ -23,6 +31,86 @@ body{
     height: 100px;
     width: 1%;
 }
+
+.conteudo .container{
+    min-width: 1100.40px;
+}
+
+.lista-itens .item{
+    list-style: none;
+    color: #666666;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.lista-itens .item-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 180px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item .col-6 small{
+    font-size: 10px;
+    color: #8c8c8c;
+}
+
+.item .col-1{
+    margin-right: 13px;
+}
+
+
+.cartao .item-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 180px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fs-8{
+    font-size: 15px;
+}
+
+.fs-9{
+    font-size: 12px;
+}
+
+/* ==== CORES DOS ÍCONES ==== */
+
+.mercado{
+    background: rgb(88, 176, 214);
+}
+
+.shopping{
+    background: rgb(207, 218, 60);
+}
+
+.online{
+    background: rgb(242, 144, 15);
+}
+
+.roupa{
+    background: rgb(29, 218, 4);
+}
+
+.paypal{
+    background: rgb(118, 159, 255);
+}
+
+.mastercard{
+    background: rgb(180, 76, 42);
+}
+
+
 
 .b {
     border: 2px solid red;

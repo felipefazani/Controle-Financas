@@ -11,14 +11,12 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/estilo.css">
 
-
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     
     <!-- ===== BARRA DE NAVEGAÇÃO ===== -->
-    div
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -80,16 +78,17 @@
             </div>
 
         </div>
-    </nav>
-    <!-- ===== FIM DA BARRA DE NAVEGAÇÃO ===== -->
+    </nav> <!-- ===== FIM BARRA DE NAVEGAÇÃO ===== -->
+   
 
-    <section class="conteudo">
-        <div class="container">
+    <section class="conteudo"> <!-- ==== INÍCIO DO CONTEÚDO PRINCIPAL ==== -->
+        <div class="container my-5">
             <div class="row">
                 <h1 class="display-4 fs-4 fw-bold">Boas-vindas, Eduardo</h1>
             </div>
-            <div class="row mt-4">
-                <div class="col-4">
+
+            <div class="row mt-4"> <!-- ==== PRIMERA ROW ===== -->
+                <div class="col-3">
                     <h5 class="display-4 fs-5">Saldo atual</h5>
                     <h3 class="text-success">R$1700</h3>   
                 </div>
@@ -106,7 +105,7 @@
                     <div class="vl m-auto"></div>
                 </div>
 
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     <i class='bx bxs-dollar-circle fs-1 text-danger'></i>    
                     <span class="display-3 fs-4 m-2">Despesa mensal</span>
                     <button class="botao">
@@ -115,10 +114,154 @@
                     <h3 class="text-danger">R$-800</h3>
                 </div>
             </div>
+            <!-- ==== FIM DA PRIMERA ROW ===== -->
+
+            <br><hr><br>
+
+            <div>  <!-- ==== SEGUNDA ROW ===== -->
+                <div class="row">
+                    <div class="col-4 ">
+                        <h4>Contas a pagar</h4>
+                        <span class="d-block display-1 text-center fs-5 text-danger my-3">Hoje</span>
+                        <ul class="lista-itens">
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxs-cart item-icon mercado'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Mercado</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>22/03/2023</small>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxs-shopping-bags item-icon shopping'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Shopping</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>22/03/2023</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <span class="d-block display-1 text-center fs-5 text-secondary my-3">Próximas</span>
+
+                        <ul class="lista-itens">
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-amazon item-icon online'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Compras online</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>25/05/2023</small>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bx-closet item-icon roupa'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Roupa</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>22/03/2023</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-4 ">
+                        <h4>Cartão de crédito</h4>
+                        <ul class="lista-itens">
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-paypal item-icon paypal'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Paypal</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>Fatura atual</small>
+                                    </div>
+                                    <div class="row">
+                                        <small class="text-danger">R$-150</small>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row w-100">
+                                        <button class="btn btn-secondary btn-sm fs-7">
+                                            Acessar fatura
+                                        </button>
+                                    </div>
+                                    <div class="row w-100">
+                                        <span class="d-flex justify-content-end fs-8 ">Disponível</span>
+                                        <small class="d-flex justify-content-end fs-9 fw-lighter">R$1000</small>
+                                    </div>                   
+                                </div>
+                            </li>
+
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-mastercard item-icon mastercard'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Mastercard</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>Fatura atual</small>
+                                    </div>
+                                    <div class="row">
+                                        <small class="text-danger">R$0</small>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row w-100">
+                                        <button class="btn btn-secondary btn-sm fs-7">
+                                            Acessar fatura
+                                        </button>
+                                    </div>
+                                    <div class="row w-100">
+                                        <span class="d-flex justify-content-end fs-8 ">Disponível</span>
+                                        <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
+                                    </div>                   
+                                </div>
+                            </li>
+                        </ul>            
+                    </div>
+
+                    <div class="col-4 ">
+                        <h4>Gastos do mês atual</h4>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <!-- ==== FIM SEGUNDA ROW ===== -->
+
         </div>
     </section>
+    <!-- ==== FIM DO INÍCIO DO CONTEÚDO PRINCIPAL ==== -->
 
     <script src="js/sidebar.js"></script>
+    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
     
