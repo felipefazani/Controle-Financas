@@ -40,6 +40,10 @@ i{
     font-size: 12px;
 }
 
+.w-90{
+    width: 90%;
+}
+
 .conteudo .container{
     min-width: 1100.40px;
 }
@@ -70,7 +74,7 @@ i{
 }
 
 .item .col-1{
-    margin-right: 14px;
+    margin-right: 20px;
 }
 
 
@@ -100,6 +104,10 @@ i{
 
 .row .botao-cartao .d-block{
     height: 50%;
+}
+
+.contas-a-receber li i{
+    background: rgb(132, 0, 194);
 }
 
 
@@ -136,8 +144,6 @@ i{
 .venmo{
     background: rgb(0, 115, 255);
 }
-
-
 
 .b {
     border: 2px solid red;
