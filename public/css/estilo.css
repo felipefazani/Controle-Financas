@@ -32,6 +32,18 @@ i{
     width: 1%;
 }
 
+.fs-8{
+    font-size: 15px;
+}
+
+.fs-9{
+    font-size: 12px;
+}
+
+.w-90{
+    width: 90%;
+}
+
 .conteudo .container{
     min-width: 1100.40px;
 }
@@ -62,7 +74,7 @@ i{
 }
 
 .item .col-1{
-    margin-right: 13px;
+    margin-right: 20px;
 }
 
 
@@ -76,13 +88,28 @@ i{
     justify-content: center;
 }
 
-.fs-8{
-    font-size: 15px;
+.row .botao-cartao{
+    width: 95%;
+    height: 100px;
+    background: #ececec;
+    color: #8c8c8c;
+    border: none;
+    margin-top: 15px;
 }
 
-.fs-9{
-    font-size: 12px;
+.row .botao-cartao:hover{
+    border: 1px solid gray;
 }
+
+
+.row .botao-cartao .d-block{
+    height: 50%;
+}
+
+.contas-a-receber li i{
+    background: rgb(132, 0, 194);
+}
+
 
 /* ==== CORES DOS ÍCONES ==== */
 
@@ -110,7 +137,13 @@ i{
     background: rgb(180, 76, 42);
 }
 
+.visa{
+    background: rgb(19, 12, 199);
+}
 
+.venmo{
+    background: rgb(0, 115, 255);
+}
 
 .b {
     border: 2px solid red;
