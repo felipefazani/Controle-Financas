@@ -77,6 +77,9 @@ i{
     margin-right: 20px;
 }
 
+.contas-a-receber .item .col-1{
+    margin-right: 5px;
+}
 
 .cartao .item-icon{
     width: 40px;
@@ -108,6 +111,28 @@ i{
 
 .contas-a-receber li i{
     background: rgb(132, 0, 194);
+}
+
+.balanco-mes{
+    color: #666666;
+    font-weight: bold;
+}
+
+.balanco-mes .balanco-porcentagem{
+    height: 20px;
+    text-align: end;
+    font-size: 12px;
+    color: #000;
+}
+
+.balanco-porcentagem.receita{
+    background-color: green;
+    width: 75%;
+}
+
+.balanco-porcentagem.despesa{
+    background-color: red;
+    width: 25%;
 }
 
 
