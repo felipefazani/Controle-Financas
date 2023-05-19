@@ -1,1 +1,3 @@
 /node_modules
+serverconfig.js
+DigiCertGlobalRootCA.crt.pem
