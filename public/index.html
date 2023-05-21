@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,17 @@
     <title>Home</title>
 
     <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/estilo.css">
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    
+
     <!-- ===== BARRA DE NAVEGAÇÃO ===== -->
     <nav class="sidebar close">
         <header>
@@ -79,7 +82,7 @@
 
         </div>
     </nav> <!-- ===== FIM BARRA DE NAVEGAÇÃO ===== -->
-   
+
 
     <section class="conteudo"> <!-- ==== INÍCIO DO CONTEÚDO PRINCIPAL ==== -->
         <div class="container my-5">
@@ -90,13 +93,14 @@
             <div class="row mt-4"> <!-- ==== PRIMERA ROW ===== -->
                 <div class="col-3">
                     <h5 class="display-4 fs-5">Saldo atual</h5>
-                    <h3 class="text-success">R$1700</h3>   
+                    <h3 class="text-success">R$1700</h3>
                 </div>
                 <div class="col-4 text-center">
-                    <i class='bx bx-dollar-circle fs-1 text-success'></i>    
+                    <i class='bx bx-dollar-circle fs-1 text-success'></i>
                     <span class="display-3 fs-4 m-2">Receita mensal</span>
                     <button class="botao">
-                        <i class='bx bx-plus-circle fs-1 text-success'></i>
+                        <i class='bx bx-plus-circle fs-1 text-success' data-bs-toggle="modal"
+                            data-bs-target="#add_receita_despesa" onclick="dispararModal('receita')"></i>
                     </button>
                     <h3 class="text-success">R$1700</h3>
                 </div>
@@ -106,19 +110,21 @@
                 </div>
 
                 <div class="col-4 text-center">
-                    <i class='bx bxs-dollar-circle fs-1 text-danger'></i>    
+                    <i class='bx bxs-dollar-circle fs-1 text-danger'></i>
                     <span class="display-3 fs-4 m-2">Despesa mensal</span>
                     <button class="botao">
-                        <i class='bx bx-minus-circle fs-1 text-danger'></i>
+                        <i class='bx bx-minus-circle fs-1 text-danger' data-bs-toggle="modal"
+                            data-bs-target="#add_receita_despesa" onclick="dispararModal('despesa')"></i>
                     </button>
                     <h3 class="text-danger">R$-800</h3>
                 </div>
             </div>
             <!-- ==== FIM DA PRIMERA ROW ===== -->
 
-            <br><hr><br>
+            <br>
+            <hr><br>
 
-            <div>  <!-- ==== SEGUNDA ROW ===== -->
+            <div> <!-- ==== SEGUNDA ROW ===== -->
                 <div class="row">
                     <div class="col-4">
                         <h4>Contas a pagar</h4>
@@ -140,7 +146,7 @@
                                     <span>R$-200</span>
                                 </div>
                             </li>
-                            
+
                             <li class="item">
                                 <div class="col-1">
                                     <i class='bx bxs-shopping-bags item-icon shopping'></i>
@@ -178,7 +184,7 @@
                                     <span>R$-1000</span>
                                 </div>
                             </li>
-                            
+
                             <li class="item">
                                 <div class="col-1">
                                     <i class='bx bx-closet item-icon roupa'></i>
@@ -195,135 +201,135 @@
                                     <span>R$-350</span>
                                 </div>
                             </li>
-                            
+
                         </ul>
                     </div>
 
                     <div class="col-4">
                         <h4>Cartão de crédito</h4>
-                            <ul class="lista-itens px-2 secao-ul-cartoes">
-                                <li class="item">
-                                    <div class="col-1">
-                                        <i class='bx bxl-paypal item-icon paypal'></i>
+                        <ul class="lista-itens px-3 secao-ul-cartoes">
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-paypal item-icon paypal'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Paypal</span>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <span>Paypal</span>
-                                        </div>
-                                        <div class="row">
-                                            <small>Fatura atual</small>
-                                        </div>
-                                        <div class="row">
-                                            <small class="text-danger">R$-150</small>
-                                        </div>
+                                    <div class="row">
+                                        <small>Fatura atual</small>
                                     </div>
-                                    <div class="col-5">
-                                        <div class="row w-100">
-                                            <button class="btn btn-secondary btn-sm fs-7">
-                                                Acessar fatura
-                                            </button>
-                                        </div>
-                                        <div class="row w-100">
-                                            <span class="d-flex justify-content-end fs-8 ">Disponível</span>
-                                            <small class="d-flex justify-content-end fs-9 fw-lighter">R$1000</small>
-                                        </div>                   
+                                    <div class="row">
+                                        <small class="text-danger">R$-150</small>
                                     </div>
-                                </li>
-    
-                                <li class="item">
-                                    <div class="col-1">
-                                        <i class='bx bxl-mastercard item-icon mastercard'></i>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row w-100">
+                                        <button class="btn btn-secondary btn-sm fs-7">
+                                            Acessar fatura
+                                        </button>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <span>Mastercard</span>
-                                        </div>
-                                        <div class="row">
-                                            <small>Fatura atual</small>
-                                        </div>
-                                        <div class="row">
-                                            <small class="text-danger">R$0</small>
-                                        </div>
+                                    <div class="row w-100">
+                                        <span class="d-flex justify-content-end fs-8 ">Disponível</span>
+                                        <small class="d-flex justify-content-end fs-9 fw-lighter">R$1000</small>
                                     </div>
-                                    <div class="col-5">
-                                        <div class="row w-100">
-                                            <button class="btn btn-secondary btn-sm fs-7">
-                                                Acessar fatura
-                                            </button>
-                                        </div>
-                                        <div class="row w-100">
-                                            <span class="d-flex justify-content-end fs-8 ">Disponível</span>
-                                            <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
-                                        </div>                   
+                                </div>
+                            </li>
+
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-mastercard item-icon mastercard'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Mastercard</span>
                                     </div>
-                                </li>
-    
-                                <li class="item">
-                                    <div class="col-1">
-                                        <i class='bx bxl-visa item-icon visa'></i>
+                                    <div class="row">
+                                        <small>Fatura atual</small>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <span>Visa</span>
-                                        </div>
-                                        <div class="row">
-                                            <small>Fatura atual</small>
-                                        </div>
-                                        <div class="row">
-                                            <small class="text-danger">R$0</small>
-                                        </div>
+                                    <div class="row">
+                                        <small class="text-danger">R$0</small>
                                     </div>
-                                    <div class="col-5">
-                                        <div class="row w-100">
-                                            <button class="btn btn-secondary btn-sm fs-7">
-                                                Acessar fatura
-                                            </button>
-                                        </div>
-                                        <div class="row w-100">
-                                            <span class="d-flex justify-content-end fs-8 ">Disponível</span>
-                                            <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
-                                        </div>                   
+                                </div>
+                                <div class="col-5">
+                                    <div class="row w-100">
+                                        <button class="btn btn-secondary btn-sm fs-7">
+                                            Acessar fatura
+                                        </button>
                                     </div>
-                                </li>
-    
-                                <li class="item">
-                                    <div class="col-1">
-                                        <i class='bx bxl-venmo item-icon venmo'></i>
+                                    <div class="row w-100">
+                                        <span class="d-flex justify-content-end fs-8 ">Disponível</span>
+                                        <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <span>Venmo</span>
-                                        </div>
-                                        <div class="row">
-                                            <small>Fatura atual</small>
-                                        </div>
-                                        <div class="row">
-                                            <small class="text-danger">R$0</small>
-                                        </div>
+                                </div>
+                            </li>
+
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-visa item-icon visa'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Visa</span>
                                     </div>
-                                    <div class="col-5">
-                                        <div class="row w-100">
-                                            <button class="btn btn-secondary btn-sm fs-7">
-                                                Acessar fatura
-                                            </button>
-                                        </div>
-                                        <div class="row w-100">
-                                            <span class="d-flex justify-content-end fs-8 ">Disponível</span>
-                                            <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
-                                        </div>                   
+                                    <div class="row">
+                                        <small>Fatura atual</small>
                                     </div>
-                                </li>
-                            </ul>
-                        
+                                    <div class="row">
+                                        <small class="text-danger">R$0</small>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row w-100">
+                                        <button class="btn btn-secondary btn-sm fs-7">
+                                            Acessar fatura
+                                        </button>
+                                    </div>
+                                    <div class="row w-100">
+                                        <span class="d-flex justify-content-end fs-8 ">Disponível</span>
+                                        <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="item">
+                                <div class="col-1">
+                                    <i class='bx bxl-venmo item-icon venmo'></i>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <span>Venmo</span>
+                                    </div>
+                                    <div class="row">
+                                        <small>Fatura atual</small>
+                                    </div>
+                                    <div class="row">
+                                        <small class="text-danger">R$0</small>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row w-100">
+                                        <button class="btn btn-secondary btn-sm fs-7">
+                                            Acessar fatura
+                                        </button>
+                                    </div>
+                                    <div class="row w-100">
+                                        <span class="d-flex justify-content-end fs-8 ">Disponível</span>
+                                        <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
                         <div class="row justify-content-center">
                             <button class="btn botao-cartao">
                                 <span class="d-block fs-1">+</span>
-                                <span class="d-block fs-5">Novo cartão</span> 
+                                <span class="d-block fs-5">Novo cartão</span>
                             </button>
                         </div>
 
                     </div>
-                    
+
 
                     <div class="col-4">
                         <h4>Gastos do mês atual</h4>
@@ -334,20 +340,20 @@
                                         <div class="col-3 ">
                                             <i class='bx bxs-cart item-icon mercado '></i>
                                         </div>
-                                        <div class="col">                            
-                                            <span>Mercado</span>   
-                                            <span class="fw-light mx-1">16,6%</span>                                    
+                                        <div class="col">
+                                            <span>Mercado</span>
+                                            <span class="fw-light mx-1">16,6%</span>
                                         </div>
-                                    </li>                       
+                                    </li>
                                     <li class="item">
                                         <div class="col-3 ">
                                             <i class='bx bxs-shopping-bags item-icon shopping'></i>
                                         </div>
-                                        <div class="col">                            
-                                            <span>Shopping</span>   
-                                            <span class="fw-light mx-1">16,6%</span>                                    
+                                        <div class="col">
+                                            <span>Shopping</span>
+                                            <span class="fw-light mx-1">16,6%</span>
                                         </div>
-                                    </li>                       
+                                    </li>
                                 </ul>
                             </div>
 
@@ -411,7 +417,7 @@
                                 <span>R$1000</span>
                             </div>
                         </li>
-                        
+
                         <li class="item">
                             <div class="col-1">
                                 <i class='bx bxs-store-alt item-icon'></i>
@@ -430,11 +436,141 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-6">
 
+                <div class="col-6 fs-6 balanco-mes">
+                    <h4>Balanço do mês</h4>
+                    <div class="row my-3">
+                        <span>
+                            Receita - <small>R$1700</small>
+                            <div class="balanco-porcentagem receita d-flex align-items-center justify-content-center">
+                                <small>75%</small>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            Despesa - <small>R$800</small>
+                            <div class="balanco-porcentagem despesa d-flex align-items-center justify-content-center">
+                                <small>25%</small>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="row my-4">
+                        <h4 style="color: #666666;">Resultado:</h4>
+                        <span class="fs-4 text-success fw-light">R$900</span>
+                    </div>
                 </div>
             </div>
             <!-- ==== FIM TERCEIRA ROW ===== -->
+
+            <!-- ===== MODAL ===== -->
+            <div class="modal fade" id="add_receita_despesa" tabindex="-1" aria-labelledby="addReceita"
+                aria-hidden="true">
+                <div class="modal-dialog" style="width: 100%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tituloModal"></h5>
+                            <i id="iconModal"></i>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <!-- caixas de texto -->
+                                <div class="form-group">
+                                    <label for="usuario">Descrição</label>
+                                    <input class="form-control" type="text" id="descricao">
+                                </div>
+
+                                <div class="row my-3">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="usuario">Valor</label>
+                                            <input class="form-control" type="text" id="valor">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="usuario">Data</label>
+                                            <input class="form-control" type="text" id="data">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="estados">Categoria</label>
+                                            <select class="form-control" id="categorias">
+                                                <option></option>
+                                                <option></option>
+                                                <option></option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label for="mensagem">Observação (opcional)</label>
+                                    <textarea class="form-control" id="mensagem" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row my-3 botao-repetir" onclick="repetir()">
+                                        <div class="col-1">
+                                            <i class='bx bx-repeat repetir'></i>
+                                        </div>
+                                        <div class="col d-flex align-items-center">
+                                            <span class="fs-6 fw-light" style="color: green">repetir</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mx-3 d-none" id="opcoes_repeticao">
+                                    <div class="form-check">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input type="radio" class="form-check-input" id="radio1" name="optradio"
+                                                    value="option1" checked>parcelado em:
+
+                                            </div>
+                                            <div class="col-3">
+                                                <select class="form-control" id="valor">
+                                                    <option></option>
+                                                    <option></option>
+                                                    <option></option>
+                                                    <option>...</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-5">
+                                                <select class="form-control" id="escala">
+                                                    <option></option>
+                                                    <option></option>
+                                                    <option></option>
+                                                    <option>...</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <label class="form-check-label" for="radio1"></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="radio2" name="optradio"
+                                            value="option2">receita fixa
+                                        <label class="form-check-label" for="radio2"></label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button class="my-5" id="botao-salvar" style="border: none;">
+                                        <i class='bx bx-check salvar'></i>
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ===== FIM DO MODAL ===== -->
+
 
         </div>
     </section>
@@ -444,8 +580,13 @@
     <script src="js/script.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script src="js/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
+
 </body>
+
 </html>
