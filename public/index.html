@@ -322,7 +322,7 @@
                         </ul>
 
                         <div class="row justify-content-center">
-                            <button class="btn botao-cartao">
+                            <button class="btn botao-cartao" data-bs-toggle="modal" data-bs-target="#novo_cartao">
                                 <span class="d-block fs-1">+</span>
                                 <span class="d-block fs-5">Novo cartão</span>
                             </button>
@@ -463,8 +463,8 @@
             </div>
             <!-- ==== FIM TERCEIRA ROW ===== -->
 
-            <!-- ===== MODAL ===== -->
-            <div class="modal fade" id="add_receita_despesa" tabindex="-1" aria-labelledby="addReceita"
+            <!-- ===== MODAL RECEITA/DESPESA ===== -->
+            <div class="modal fade" id="add_receita_despesa" tabindex="-1" aria-labelledby="addReceita/Despesa"
                 aria-hidden="true">
                 <div class="modal-dialog" style="width: 100%;">
                     <div class="modal-content">
@@ -569,7 +569,84 @@
                     </div>
                 </div>
             </div>
-            <!-- ===== FIM DO MODAL ===== -->
+            <!-- ===== FIM DO MODAL RECEITA/DESPESA ===== -->
+
+            <!-- MODAL NOVO CARTÃO -->
+
+            <div class="modal fade" id="novo_cartao" tabindex="-1" aria-labelledby="novoCartao" aria-hidden="true">
+                <div class="modal-dialog" style="width: 100%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tituloModal">Novo cartão</h5>
+                            <i class='bx bxs-credit-card text-primary fs-1 mx-2'></i>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <!-- caixas de texto -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <label for="estados">Bandeira do cartão</label>
+                                            <select class="form-control" id="bandeira">
+                                                <option></option>
+                                                <option></option>
+                                                <option></option>
+                                                <option>...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="cvv">CVV</label>
+                                            <input class="form-control" type="text" id="cvv">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row my-3">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="usuario">Número do cartão</label>
+                                            <input class="form-control" type="text" id="num_cartao">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="usuario">Data de vencimento</label>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <input class="form-control" type="text" id="mes_cartao">
+                                                </div>
+                                                <div class="col-8">
+                                                    <input class="form-control" type="text" id="mes_cartao">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group my-3">
+                                    <label for="usuario">Nome do cartão</label>
+                                    <input class="form-control" type="text" id="nome_cartao">
+                                </div>
+
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label for="mensagem">Descrição (opcional)</label>
+                                    <textarea class="form-control" id="mensagem" rows="3"></textarea>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button class="my-5" id="botao-salvar" style="border: none;">
+                                        <i class='bx bx-check salvar'></i>
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIM DO MODAL NOVO CARTÃO -->
 
 
         </div>
