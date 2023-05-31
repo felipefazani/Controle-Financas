@@ -44,6 +44,10 @@ i{
     width: 90%;
 }
 
+.botao-repetir{
+    cursor: pointer;
+}
+
 .conteudo .container{
     min-width: 1100.40px;
 }
@@ -77,6 +81,9 @@ i{
     margin-right: 20px;
 }
 
+.contas-a-receber .item .col-1{
+    margin-right: 5px;
+}
 
 .cartao .item-icon{
     width: 40px;
@@ -110,6 +117,56 @@ i{
     background: rgb(132, 0, 194);
 }
 
+.balanco-mes{
+    color: #666666;
+    font-weight: bold;
+}
+
+.balanco-mes .balanco-porcentagem{
+    height: 20px;
+    text-align: end;
+    font-size: 12px;
+    color: #000;
+}
+
+.balanco-porcentagem.receita{
+    background-color: green;
+    width: 75%;
+}
+
+.balanco-porcentagem.despesa{
+    background-color: red;
+    width: 25%;
+}
+
+.form-group .repetir{
+    border: 2px solid green;
+    border-radius: 360px;
+    width: 35px;
+    height: 35px;
+    color: green;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#botao-salvar .salvar{
+    background: green;
+    border-radius: 360px;
+    font-size: 55px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group input, 
+.form-group select,
+.form-group textarea{
+    border: 1px solid black;
+}
 
 /* ==== CORES DOS ÍCONES ==== */
 

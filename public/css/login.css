@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    background: url('../imagens/login.jpg');
+    height: 100%;
+}
+
+section{
+    height: 100%;
+}
+
+section .container {
+    background: #FFF;
+    border-radius: 20px;
+    min-width: 760px;
+    min-height: 560px;
+}
+
+.form-control{
+    border: 1px solid black;
+}
+
+.vl{
+    border-width: 0px 1px 0px 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+.b {
+    border: 2px solid red;
+}
+
+.b2 {
+    border: 2px solid blue;
+}
+
+.b3 {
+    border: 2px solid green;
+}
