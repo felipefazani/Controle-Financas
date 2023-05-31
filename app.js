@@ -11,6 +11,9 @@ const saltRound = 10;
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+const homeRouter = require('./src/routers/index.js');
+const authRouter = require('./src/routers/authRouter.js');
+
 const config =
 {
     host: `${server}.mysql.database.azure.com`,
@@ -35,6 +38,7 @@ conn.connect(
 
   
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 app.post("/query", (req, res) => {
   conn.query(req.body.query, (err, result) => { res.send(result) })
@@ -101,6 +105,9 @@ app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, '/public/')));
 
 app.set('views', './src/views');
+
+app.use('/', homeRouter);
+app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Globomantics', data: ['a', 'b', 'c'] });

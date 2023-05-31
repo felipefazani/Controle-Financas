@@ -52,24 +52,24 @@
                         <h2 class="text-center my-3 fw-bolder">
                             Faça seu cadastro
                         </h2>
-                        <form>
+                        <form name="signup" action="/auth/signUp" method="post">
                             <div class="mb-3">
                                 <label>Nome:</label>
-                                <input type="nome" class="form-control" id="login_email">
+                                <input name="name" type="nome" class="form-control" id="login_email">
                             </div>
                             <div class="mb-3">
                                 <label>Email:</label>
-                                <input type="email" class="form-control" id="login_email">
+                                <input name="email" type="email" class="form-control" id="login_email">
                             </div>
                             <div class="mb-3">
                                 <label>Senha:</label>
-                                <input type="password" class="form-control" id="login_senha">
+                                <input name="password" type="password" class="form-control" id="login_senha">
                             </div>
                             <div class="mb-3">
                                 <label>Confime sua senha:</label>
-                                <input type="password" class="form-control" id="login_senha">
+                                <input name="confirmPassword" type="password" class="form-control" id="login_senha">
                             </div>
-                            <button type="submit" class="btn w-100 my-4 btn-primary">Enviar</button>
+                            <input type="submit" value="Enviar" class="btn w-100 my-4 btn-primary"></input>
                         </form>
                     </div>
                 </div>
