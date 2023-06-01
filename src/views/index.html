@@ -29,17 +29,17 @@
                             <i class='bx bxs-user-circle text-primary' style="font-size: 120px;"></i><br>
                             Faça seu login
                         </h2>
-                        <form>
+                        <form name="signin" action="/auth/signIn" method="post">
                             <div class="mb-3">
                                 <label>Email:</label>
-                                <input type="email" class="form-control" id="login_email">
+                                <input name="email" type="email" class="form-control" id="login_email">
                             </div>
                             <div class="mb-3">
                                 <label>Senha:</label>
-                                <input type="password" class="form-control" id="login_senha">
+                                <input name="password" type="password" class="form-control" id="login_senha">
                             </div>
-                            <button type="submit" class="btn w-100 my-4 btn-primary">Enviar</button>
-                            <a href="pages/home.html">Ir pra home</a>
+                            <input type="submit" value="Enviar" class="btn w-100 my-4 btn-primary"></input>
+                            <a href="/home">Ir pra home</a>
                         </form>
 
                     </div>

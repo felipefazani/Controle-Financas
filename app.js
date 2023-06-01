@@ -1,45 +1,32 @@
 const express = require('express');
+const session = require('express-session');
 // const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
-const fs = require('fs');
-const mysql = require('mysql');
-const { database, server, user, password } = require('./serverconfig.js');
 const bcrypt = require("bcrypt");
 const saltRound = 10;
+const cookieParser = require('cookie-parser');
+const conn = require("./src/config/databaseconnection");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-const homeRouter = require('./src/routers/index.js');
+//routing
+const indexRouter = require('./src/routers/index.js');
 const authRouter = require('./src/routers/authRouter.js');
+const homeRouter = require('./src/routers/homeRouter.js');
 
-const config =
-{
-    host: `${server}.mysql.database.azure.com`,
-    user: `${user}`,
-    password: `${password}`,
-    database: `${database}`,
-    port: 3306,
-    ssl: {ca: fs.readFileSync("./DigiCertGlobalRootCA.crt.pem")}
-};
-
-const conn = new mysql.createConnection(config);
-conn.connect(
-  function (err) {
-      if (err) {
-          console.log("!!! Cannot connect !!! Error:");
-          throw err;
-      }
-      else {
-          console.log("Connection established.");
-      }
-  });
-
-  
+//setting up 
+app.use(morgan('tiny'));
+app.use(express.static(path.join(__dirname, '/public/')));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
+app.use(session({secret: 'top10financas'}));
 
+//passport
+require('./src/config/passport.js')(app)
+  
 app.post("/query", (req, res) => {
   conn.query(req.body.query, (err, result) => { res.send(result) })
 });
@@ -101,12 +88,11 @@ app.post("/login", (req, res) => {
   );
 });
 
-app.use(morgan('tiny'));
-app.use(express.static(path.join(__dirname, '/public/')));
 
 app.set('views', './src/views');
 
-app.use('/', homeRouter);
+app.use('/home', homeRouter);
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
