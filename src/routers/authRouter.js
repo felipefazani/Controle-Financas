@@ -7,8 +7,7 @@ const authRouter = express.Router();
 const saltRound = 10;
 
 authRouter.route('/signUp').post((req, res) => {
-  // TODO create the user
-  const name = req.body.name;
+  const name = req.body.username;
   const email = req.body.email;
   const pswd = req.body.password;
 
@@ -19,7 +18,7 @@ authRouter.route('/signUp').post((req, res) => {
       `SELECT * FROM user WHERE email = '${email}'`,
       (err, result) => {
         if (err) {
-          res.send(err);
+          res.send("Error in signup: \n" + err);
         }
 
         if (result.length == 0) {
@@ -31,7 +30,7 @@ authRouter.route('/signUp').post((req, res) => {
               }
               req.login(req.body, () => {
                 console.log({ msg: "Registered completed" });
-                res.redirect('/auth/profile');
+                res.redirect('/home');
               });
             });
 
