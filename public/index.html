@@ -29,17 +29,17 @@
                             <i class='bx bxs-user-circle text-primary' style="font-size: 120px;"></i><br>
                             Faça seu login
                         </h2>
-                        <form name="signin" action="/auth/signIn" method="post">
+                        <form>
                             <div class="mb-3">
                                 <label>Email:</label>
-                                <input name="email" type="email" class="form-control" id="login_email">
+                                <input type="email" class="form-control" id="login_email">
                             </div>
                             <div class="mb-3">
                                 <label>Senha:</label>
-                                <input name="password" type="password" class="form-control" id="login_senha">
+                                <input type="password" class="form-control" id="login_senha">
                             </div>
-                            <input type="submit" value="Enviar" class="btn w-100 my-4 btn-primary"></input>
-                            <a href="/home">Ir pra home</a>
+                            <button type="submit" class="btn w-100 my-4 btn-primary">Enviar</button>
+                            <a href="pages/home.html">Ir pra home</a>
                         </form>
 
                     </div>
@@ -52,24 +52,24 @@
                         <h2 class="text-center my-3 fw-bolder">
                             Faça seu cadastro
                         </h2>
-                        <form name="signup" action="/auth/signUp" method="post">
+                        <form>
                             <div class="mb-3">
                                 <label>Nome:</label>
-                                <input name="username" type="nome" class="form-control" id="login_email">
+                                <input type="nome" class="form-control" id="login_email">
                             </div>
                             <div class="mb-3">
                                 <label>Email:</label>
-                                <input name="email" type="email" class="form-control" id="login_email">
+                                <input type="email" class="form-control" id="login_email">
                             </div>
                             <div class="mb-3">
                                 <label>Senha:</label>
-                                <input name="password" type="password" class="form-control" id="login_senha">
+                                <input type="password" class="form-control" id="login_senha">
                             </div>
                             <div class="mb-3">
                                 <label>Confime sua senha:</label>
-                                <input name="confirmPassword" type="password" class="form-control" id="login_senha">
+                                <input type="password" class="form-control" id="login_senha">
                             </div>
-                            <input type="submit" value="Enviar" class="btn w-100 my-4 btn-primary"></input>
+                            <button type="submit" class="btn w-100 my-4 btn-primary">Enviar</button>
                         </form>
                     </div>
                 </div>
