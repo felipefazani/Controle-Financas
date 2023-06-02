@@ -18,12 +18,13 @@ module.exports = function localStrategy() {
           res.send(err);
 
         if (result.length == 0) {
-          done(null, null);
+          done(Error("incorrect email"), null);
         } else {
+          const name = result[0].name;
           bcrypt.compare(password, result[0].password,
             (erro, result) => {
               if (result) {
-                const user = { email, password };
+                const user = { email, 'name': name };
                 done(null, user);
               } else {
                 done(Error("incorrect password"), null);
