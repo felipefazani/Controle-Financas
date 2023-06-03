@@ -28,7 +28,11 @@ authRouter.route('/signUp').post((req, res) => {
               if (err) {
                 res.send(err);
               }
-              req.login(req.body, () => {
+              user = {
+                username: req.body.username,
+                email: req.body.email,
+              }
+              req.login(user, () => {
                 console.log({ msg: "Registered completed" });
                 res.redirect('/home');
               });
