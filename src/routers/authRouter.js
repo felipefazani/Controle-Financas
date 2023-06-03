@@ -12,7 +12,7 @@ authRouter.route('/signUp').post((req, res) => {
   const pswd = req.body.password;
 
   if (pswd != req.body.confirmPassword) {
-    res.send({msg : "Password and Confirm Password doesn't coincide "});
+    res.send({msg : "Incorrect password and confirm password"});
     // Error("Incorrect password and confirm password");
   } else {  
     bcrypt.hash(pswd, saltRound, (err, hash) => {
