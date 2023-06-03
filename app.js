@@ -31,64 +31,6 @@ app.post("/query", (req, res) => {
   conn.query(req.body.query, (err, result) => { res.send(result) })
 });
 
-app.post("/register", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email; 
-  const pswd = req.body.password;
-
-  bcrypt.hash(pswd, saltRound, (err, hash) => {
-    conn.query(
-      `SELECT * FROM user WHERE email = '${email}'`,
-      (err, result) => {
-        if (err) {
-          res.send(err);
-        }
-        if (result.length == 0) {
-          conn.query(
-            `INSERT INTO user values (NULL, '${name}', '${email}', '${hash}')`,
-            (err, result) => {
-              if (err){
-                res.send(err);
-              }
-              res.send({ msg: "Registered completed"});
-            });
-        } else {
-          res.send({ msg: "This user is already registered"});
-        }
-      }
-    );
-  });
-});
-
-app.post("/login", (req, res) => {
-  const pswd = req.body.password;
-  const email = req.body.email;
-
-  conn.query(
-    `SELECT * FROM user WHERE email='${req.body.email}'`,
-    (err, result) => {
-      if (err)
-        res.send(err);
-      
-      if (result.length == 0){
-        res.send({msg: "email incorrect"});
-      }else{
-        bcrypt.compare(pswd, result[0].password, 
-          (erro, result) =>{
-            if (result) {
-              res.send({msg: "user logged"});
-            } else {
-              res.send({msg: "password incorrect"});
-            }
-          }
-        );
-        
-      }
-    }
-  );
-});
-
-
 app.set('views', './src/views');
 
 app.use('/home', homeRouter);
