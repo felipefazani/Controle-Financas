@@ -20,6 +20,10 @@ i{
     color: #ffffff;
 }
 
+.mr{
+    margin-right: 10px;
+}
+
 .botao{
     background: transparent;
     border: none;
