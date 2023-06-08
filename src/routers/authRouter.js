@@ -57,6 +57,13 @@ authRouter
     failureMessage: '/'
   }));
 
+authRouter.route('/loggout').get((req, res, next) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+})
+
 authRouter.route('/profile').get((req, res) => {
   res.json(req.user);
 });
