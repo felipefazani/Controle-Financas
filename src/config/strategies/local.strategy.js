@@ -21,10 +21,11 @@ module.exports = function localStrategy() {
           done('{ msg: "incorrect email" }', null);
         } else {
           const name = result[0].name;
+          const idUser = result[0].id_user;
           bcrypt.compare(password, result[0].password,
             (erro, result) => {
               if (result) {
-                const user = { email, 'username': name };
+                const user = { email, 'username': name, idUser };
                 done(null, user);
               } else {
                 done('{ msg: "incorrect password" }', null);

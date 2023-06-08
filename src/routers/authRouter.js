@@ -33,6 +33,7 @@ authRouter.route('/signUp').post((req, res) => {
                 user = {
                   username: req.body.username,
                   email: req.body.email,
+                  idUser: result.insertId,
                 }
                 req.login(user, () => {
                   console.log({ msg: "Registered completed" });
