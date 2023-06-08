@@ -4,7 +4,6 @@ const app = express();
 const path = require('path');
 
 
-console.log(__dirname);
 app.set("pages", path.join(__dirname, '../views/index.html'));
 
 /* GET home page. */
