@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const saltRound = 10;
 const cookieParser = require('cookie-parser');
 const conn = require("./src/config/databaseconnection");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(session({secret: 'top10financas'}));
+app.use(cors());
 
 //passport
 require('./src/config/passport.js')(app)
