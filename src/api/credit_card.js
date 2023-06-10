@@ -3,8 +3,21 @@ const express = require('express');
 
 const creditRouter = express.Router();
 
-async function insertBill(idCard, price, month, year, paid, valuePaid) {
+async function databaseQuery(query) {
   return new Promise((resolve, reject) => {
+    conn.query(query, (err, result) => {
+      if (err) {
+        reject(`Database Query error: \n ${err}`);
+        return;
+      }
+
+      resolve(result);
+    });
+  });
+};
+
+async function insertBill(idCard, price, month, year, paid, valuePaid) {
+  return new Promise(async (resolve, reject) => {
     let varName = false;
 
     if (idCard === undefined)
@@ -33,51 +46,41 @@ async function insertBill(idCard, price, month, year, paid, valuePaid) {
       return;
     } else {
       // check if the bill already exists
-      conn.query(`SELECT * FROM card_bill WHERE id_card=${idCard} AND month=${month} AND year=${year}`
-        , (err, result) => {
-          if (err) {
-            reject(err);
-            return;
-          }
+      const billQuery = `SELECT * FROM card_bill WHERE id_card=${idCard} AND month=${month} AND year=${year}`;
+      const billResult = await databaseQuery(billQuery);
 
-          if (result.length == 0) {
-            conn.query(
-              `INSERT INTO card_bill (price, month, year, paid, value_paid, id_card) 
-                VALUES ('${price}', '${month}', '${year}', '${paid}', '${valuePaid}', '${idCard}')`,
-              (err, result) => {
-                if (err) {
-                  reject(err);
-                  return;
-                }
+      if (billResult.length == 0) {
+        const insertBillQuery = `INSERT INTO card_bill (price, month, year, paid, value_paid, id_card) 
+                                VALUES ('${price}', '${month}', '${year}', '${paid}', '${valuePaid}', '${idCard}')`;
 
-                const bill = {
-                  idCard,
-                  price,
-                  month,
-                  year,
-                  paid,
-                  valuePaid,
-                  idBill: result.insertId,
-                };
-                resolve(bill);
-                return;
-              }
-            );
-          } else {
-            const bill = {
-              "idCard": result[0].id_card,
-              price,
-              month,
-              year,
-              paid,
-              "valuePaid": result[0].value_paid,
-              "idBill": result[0].id_bill,
-            }
-            resolve(bill);
-            return;
-          }
-        });
+        const insertBillResult = await databaseQuery(insertBillQuery);
 
+        const bill = {
+          idCard,
+          price,
+          month,
+          year,
+          paid,
+          valuePaid,
+          idBill: insertBillResult.insertId,
+        };
+        resolve(bill);
+        return;
+
+      } else {
+        const bill = {
+          "idCard": billResult[0].id_card,
+          price,
+          month,
+          year,
+          paid,
+          "valuePaid": billResult[0].value_paid,
+          "idBill": billResult[0].id_bill,
+        }
+        resolve(bill);
+        return;
+
+      }
     }
   });
 }
@@ -177,9 +180,9 @@ async function insertExpense(idBill, value, date, description, recurringExpense,
     }
 
   })
-}
+};
 
-creditRouter.route("/insertCard").post((req, res) => {
+creditRouter.route("/insertCard").post(async (req, res) => {
   // getting information 
   const idUser = req.body.idUser;
   const cardName = req.body.cardName;
@@ -211,47 +214,55 @@ creditRouter.route("/insertCard").post((req, res) => {
   } else if (creditLimit < 0) {
     res.send({ msg: "Credit Limit cannot be negative!", error: true, code: 1000 })
   } else {
-    conn.query(
-      `INSERT INTO credit_card (card_name, card_brand, close_date, credit_limit, due_date, id_user) 
-        VALUES ('${cardName}', '${cardBrand}', '${closeDate}', '${creditLimit}', '${dueDate}', '${idUser}')`
-      , (err, result) => {
-        if (err) {
-          res.send(err);
-        }
-        const credit = {
-          cardName,
-          cardBrand,
-          closeDate,
-          creditLimit,
-          dueDate,
-          idUser,
-          "idCard": result.insertId,
-        };
-        res.send(credit);
-      });
-  }
+    const userQuery = `SELECT * from user WHERE id_user= ${idUser}`;
+    const userResult = await databaseQuery(userQuery);
 
+    if (userResult.length == 0) {
+      res.send({ msg: `User (id: ${idUser} doesn't exist in database!)`, error: true, code: 1001 })
+    } else {
+      const insertCardQuery = `INSERT INTO credit_card (card_name, card_brand, close_date, credit_limit, due_date, id_user) 
+                                VALUES ('${cardName}', '${cardBrand}', '${closeDate}', '${creditLimit}', '${dueDate}', '${idUser}')`;
+      const insertCardResult = await databaseQuery(insertCardQuery);
+
+      const credit = {
+        cardName,
+        cardBrand,
+        closeDate,
+        creditLimit,
+        dueDate,
+        idUser,
+        "idCard": insertCardResult.insertId,
+      };
+      res.send(credit);
+    }
+  }
 });
 
-creditRouter.route("/getCard").post((req, res) => {
+creditRouter.route("/getCard").post(async (req, res) => {
   const idUser = req.body.idUser;
 
   if (idUser === undefined)
     res.send({ msg: "idUser is null, try again!", error: true, code: 1000 });
   else {
-    conn.query(`SELECT * FROM credit_card WHERE id_user='${idUser}'`
-      , (err, result) => {
-        if (err)
-          res.send(err);
-        else {
-          if (result.length == 0) {
-            res.send({ msg: "This user is not in database", error: true, code: 1001 });
-          } else {
-            res.send(result);
-          }
-        }
+    const query = `SELECT * FROM credit_card WHERE id_user = '${idUser}'`;
+    const result = await databaseQuery(query);
 
-      });
+    if (result.length == 0) {
+      const userQuery = `SELECT * FROM user WHERE id_user = '${idUser}'`;
+      const userResult = await databaseQuery(userQuery);
+
+      let msg;
+      if (userResult.length == 0) {
+        msg = "This user doesn't exists in database!";
+      } else {
+        msg = "This user has no cards in database!";
+      }
+
+      res.send({ msg, error: true, code: 1001 });
+
+    } else {
+      res.send(result);
+    }
   }
 });
 
@@ -267,22 +278,30 @@ creditRouter.route("/insertBill").post(async (req, res) => {
   res.send(result);
 });
 
-creditRouter.route("/getBill").post((req, res) => {
+creditRouter.route("/getBill").post(async (req, res) => {
   const idCard = req.body.idCard;
 
   if (idCard === undefined)
     res.send({ msg: "idCard is null, try again!", error: true, code: 1000 });
   else {
-    conn.query(`SELECT * FROM card_bill WHERE id_card=${idCard}`
-      , (err, result) => {
-        if (err)
-          res.send(err);
+    const query = `SELECT * FROM card_bill WHERE id_card=${idCard}`;
+    const result = await databaseQuery(query);
 
-        if (result.length == 0)
-          res.send({ msg: "This card doesn't have bill or doesn't exists, try to create one!", error: true, code: 1001 });
-        else
-          res.send(result);
-      });
+    if (result.length == 0) {
+      const cardQuery = `SELECT * FROM credit_card WHERE id_card=${idCard}`;
+      const cardResult = await databaseQuery(cardQuery);
+
+      let msg;
+      if (cardResult.length == 0) {
+        msg = "This card doesn't exists in database!";
+      } else {
+        msg = "This card has no bills in database!";
+      }
+
+      res.send({ msg, error: true, code: 1001 });
+      // res.send({ msg: "This card doesn't have bill or doesn't exists, try to create one!", error: true, code: 1001 });
+    } else
+      res.send(result);
   }
 });
 
@@ -303,64 +322,50 @@ creditRouter.route("/insertExpense").post(async (req, res) => {
   res.send(result);
 });
 
-creditRouter.route("/getExpense").post((req, res) => {
+creditRouter.route("/getExpense").post(async (req, res) => {
   const idBill = req.body.idBill;
 
   if (idBill === undefined)
     res.send({ msg: "idBill is null, try again!", error: true, code: 1000 });
   else {
-    conn.query(`SELECT * FROM card_expense WHERE id_bill='${idBill}'`
-      , (err, result) => {
-        if (err)
-          res.send(err);
+    const selectExpense = `SELECT * FROM card_expense WHERE id_bill='${idBill}'`;
+    const expense = await databaseQuery(selectExpense);
 
-        if (result.length == 0) {
-          conn.query(`SELECT * FROM card_bill WHERE id_bill='${idBill}'`
-            , (err, result) => {
-              if (err)
-                res.send(err);
-              else {
-                let msg;
-                if (result.length == 0) {
-                  msg = "This bill doesn't exists in database!";
-                } else {
-                  msg = "This bill has no expenses in database";
-                }
-                res.send({ msg, error: true, code: 1001 });
-              }
-            })
+    if (expense.length == 0) {
+      const selectBill = `SELECT * FROM card_bill WHERE id_bill='${idBill}'`;
+      const bill = await databaseQuery(selectBill);
 
-        } else {
-          res.send(result);
-        }
-      });
+      let msg;
+      if (bill.length == 0) {
+        msg = "This bill doesn't exists in database!";
+      } else {
+        msg = "This bill has no expenses in database!";
+      }
+
+      res.send({ msg, error: true, code: 1001 });
+    } else {
+      res.send(expense);
+    }
   }
 })
 
-creditRouter.route("/insertCategory").post((req, res) => {
+creditRouter.route("/insertCategory").post(async (req, res) => {
   const category = req.body.category;
 
   if (category === undefined)
     res.send({ msg: "category is null, try again!", error: true, code: 1000 });
   else {
-    conn.query(`INSERT INTO category (name_category) values ('${category}')`
-      , (err, result) => {
-        if (err)
-          res.send(err);
-
-        res.send(result);
-      });
+    const query = `INSERT INTO category (name_category) values ('${category}')`;
+    const result = await databaseQuery(query);
+    res.send(result);
   }
 });
 
-creditRouter.route("/getCategory").post((req, res) => {
-  conn.query("SELECT * FROM category"
-    , (err, result) => {
-      if (err)
-        res.send(err);
+creditRouter.route("/getCategory").post(async (req, res) => {
+  query = `SELECT * FROM category`
+  result = await databaseQuery(query);
 
-      res.send(result);
-    });
+  res.send(result);
 });
 
 module.exports = creditRouter;
