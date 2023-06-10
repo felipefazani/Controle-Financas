@@ -16,6 +16,7 @@ const app = express();
 const indexRouter = require('./src/routers/index.js');
 const authRouter = require('./src/routers/authRouter.js');
 const homeRouter = require('./src/routers/homeRouter.js');
+const creditAPI = require('./src/api/credit_card.js');
 
 //setting up 
 app.use(morgan('tiny'));
@@ -30,7 +31,10 @@ app.use(cors());
 require('./src/config/passport.js')(app)
   
 app.post("/query", (req, res) => {
-  conn.query(req.body.query, (err, result) => { res.send(result) })
+  conn.query(req.body.query, (err, result) => { 
+    if (err)
+      res.send(err);
+    res.send(result) })
 });
 
 app.set('views', './src/views');
@@ -38,6 +42,7 @@ app.set('views', './src/views');
 app.use('/home', homeRouter);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/api/creditCard', creditAPI);
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Globomantics', data: ['a', 'b', 'c'] });
