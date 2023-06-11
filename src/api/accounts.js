@@ -18,6 +18,7 @@ async function databaseQuery(query) {
 
 async function insertAccount(idUser, bank, description, currentBalance, accountType) {
   return new Promise(async (resolve, reject) => {
+    varName = false;
     if (idUser === undefined)
       varName = "idUser";
     if (bank === undefined)
@@ -57,7 +58,7 @@ accountRouter.route('/insertAccount').post(async (req, res) => {
   const idUser = req.body.idUser;
   const bank = req.body.bank;
   const description = req.body.description;
-  const currentBalance = 0;
+  const currentBalance = req.body.currentBalance;
   const accountType = 'tipo';
 
   try {
@@ -69,7 +70,9 @@ accountRouter.route('/insertAccount').post(async (req, res) => {
 
 });
 
-// accountRouter.route('/')
+accountRouter.route('/getAccount').post(async (req, res) => {
+
+});
 
 
 module.exports = accountRouter;
