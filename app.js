@@ -17,6 +17,7 @@ const indexRouter = require('./src/routers/index.js');
 const authRouter = require('./src/routers/authRouter.js');
 const homeRouter = require('./src/routers/homeRouter.js');
 const creditAPI = require('./src/api/credit_card.js');
+const accountAPI = require('./src/api/accounts.js');
 
 //setting up 
 app.use(morgan('tiny'));
@@ -43,6 +44,7 @@ app.use('/home', homeRouter);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api/creditCard', creditAPI);
+app.use('/api/accounts', accountAPI);
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Globomantics', data: ['a', 'b', 'c'] });
