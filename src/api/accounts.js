@@ -16,5 +16,54 @@ async function databaseQuery(query) {
   });
 };
 
+async function insertAccount(idUser, bank, description, currentBalance, accountType) {
+  return new Promise(async (resolve, reject) => {
+    if (idUser === undefined)
+      varName = "idUser";
+    if (bank === undefined)
+      varName = "bank";
+    if (description === undefined)
+      varName = "description";
+    if (currentBalance === undefined)
+      varName = "currentBalance";
+    if (accountType === undefined)
+      varName = "accountType";
+
+
+    if (varName) {
+      reject({ msg: `${varName} is null, try again!`, error: true, code: 1000 });
+      return;
+    }
+
+    const insertAccountQuery = `INSERT INTO account (id_user, bank_institution, description, current_balance, account_type)
+                                VALUES ('${idUser}', '${bank}', '${description}', '${currentBalance}', '${accountType}')`;
+    const insertAccountResult = await databaseQuery(insertAccountQuery);
+
+    const account = {
+      idAccount: insertAccountResult.insertId,
+      idUser,
+      bank,
+      description,
+      currentBalance,
+      accountType
+    }
+
+    resolve(account);
+    return;
+  });
+}
+
+accountRouter.route('/insertAccount').post((req, res) => {
+  const idUser = req.body.idUser;
+  const bank = req.body.bank;
+  const description = req.body.description;
+  const currentBalance = 0;
+  const accountType = 'tipo';
+
+  result = insertAccount(idUser, bank, description, currentBalance, accountType);
+
+  res.send(result);
+});
+
 
 module.exports = accountRouter;
