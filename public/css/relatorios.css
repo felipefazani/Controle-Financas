@@ -1,0 +1,16 @@
+.row .col .table tbody tr td{
+    padding-left: 0px;
+}
+
+.row .col .table tbody tr th{
+    padding-left: 0px;
+    color: rgb(63, 63, 63);
+}
+
+.entrada {
+    color:green;
+}
+
+.saida {
+    color: red;
+}
