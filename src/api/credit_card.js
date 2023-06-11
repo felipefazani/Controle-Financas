@@ -34,15 +34,15 @@ async function insertBill(idCard, price, month, year, paid, valuePaid) {
       varName = "valuePaid";
 
     if (varName) {
-      resolve({ msg: `${varName} is null, try again!`, error: true, code: 1000 });
+      reject({ msg: `${varName} is null, try again!`, error: true, code: 1000 });
       return;
     }
 
     if (month >= 13 || month <= 0) {
-      resolve({ msg: "month cannot be greater than 12 and less than 1", error: true, code: 1000 });
+      reject({ msg: "month cannot be greater than 12 and less than 1", error: true, code: 1000 });
       return;
     } else if (price < 0) {
-      resolve({ msg: "price cannot be less than 0", error: true, code: 1000 });
+      reject({ msg: "price cannot be less than 0", error: true, code: 1000 });
       return;
     } else {
       // check if the bill already exists
