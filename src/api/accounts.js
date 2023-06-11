@@ -35,6 +35,14 @@ async function insertAccount(idUser, bank, description, currentBalance, accountT
       return;
     }
 
+    const userQuery = `SELECT * FROM user WHERE id_user='${idUser}'`;
+    const userResult = await databaseQuery(userQuery);
+
+    if (userResult.length == 0) {
+      reject({ msg: `The user ${idUser} don't exist in database! Try to use a valid user`, error: true, code: 1001 });
+      return;
+    }
+
     const insertAccountQuery = `INSERT INTO account (id_user, bank_institution, description, current_balance, account_type)
                                 VALUES ('${idUser}', '${bank}', '${description}', '${currentBalance}', '${accountType}')`;
     const insertAccountResult = await databaseQuery(insertAccountQuery);
