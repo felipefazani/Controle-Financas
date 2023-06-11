@@ -53,17 +53,23 @@ async function insertAccount(idUser, bank, description, currentBalance, accountT
   });
 }
 
-accountRouter.route('/insertAccount').post((req, res) => {
+accountRouter.route('/insertAccount').post(async (req, res) => {
   const idUser = req.body.idUser;
   const bank = req.body.bank;
   const description = req.body.description;
   const currentBalance = 0;
   const accountType = 'tipo';
 
-  result = insertAccount(idUser, bank, description, currentBalance, accountType);
+  try {
+    result = await insertAccount(idUser, bank, description, currentBalance, accountType);
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
 
-  res.send(result);
 });
+
+// accountRouter.route('/')
 
 
 module.exports = accountRouter;
