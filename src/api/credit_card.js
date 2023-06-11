@@ -86,7 +86,7 @@ async function insertBill(idCard, price, month, year, paid, valuePaid) {
 }
 
 async function insertExpense(idBill, value, date, description, recurringExpense, isInstallment, numberTimes, currentInstallment, idCategory, installmentControl = 1) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     let varName = false;
 
     if (idBill === undefined)
@@ -117,66 +117,51 @@ async function insertExpense(idBill, value, date, description, recurringExpense,
         value = value / numberTimes;
         currentInstallment = currentInstallment + 1;
       }
+      const insertExpenseQuery = `INSERT INTO card_expense (id_bill, category, value, date, description, recurring_expense, is_installment, number_of_times, current_installment)
+                                  VALUES ('${idBill}', '${idCategory}', '${value}', '${date}', '${description}', '${recurringExpense}', '${isInstallment}', '${numberTimes}', '${currentInstallment}')`;
+      const insertExpenseResult = await databaseQuery(insertExpenseQuery);
 
-      conn.query(`INSERT INTO card_expense (id_bill, category, value, date, description, recurring_expense, is_installment, number_of_times, current_installment)
-            VALUES ('${idBill}', '${idCategory}', '${value}', '${date}', '${description}', '${recurringExpense}', '${isInstallment}', '${numberTimes}', '${currentInstallment}')`
-        , (err, result) => {
-          if (err) {
-            reject(err);
-            return;
-          } else {
-            conn.query(`UPDATE card_bill SET price= price + ${value} WHERE id_bill = ${idBill}`
-              , (err, result) => {
-                if (err) {
-                  reject(err);
-                  return;
-                }
-              });
+      const updateBillQuery = `UPDATE card_bill SET price= price + ${value} WHERE id_bill = ${idBill}`;
+      const updateBillResult = await databaseQuery(updateBillQuery);
 
-            if (isInstallment & installmentControl) {
-              conn.query(`SELECT id_card, month, year FROM card_bill WHERE id_bill= ${idBill}`
-                , async (err, result) => {
-                  if (err) {
-                    reject(err);
-                    return;
-                  } else {
-                    const idCard = result[0].id_card;
-                    let month = result[0].month;
-                    let year = result[0].year;
+      if (isInstallment & installmentControl) {
+        const selectBillQuery = `SELECT id_card, month, year FROM card_bill WHERE id_bill= ${idBill}`
+        const selectBillResult = await databaseQuery(selectBillQuery);
 
-                    for (let i = 0; i < numberTimes - 1; i++) {
-                      month++;
-                      if (month == 13) {
-                        month = 1;
-                        year++;
-                      }
+        const idCard = selectBillResult[0].id_card;
+        let month = selectBillResult[0].month;
+        let year = selectBillResult[0].year;
 
-                      const bill = await insertBill(idCard, 0, month, year, 0, 0);
-                      console.log(bill.idBill);
-                      const expense = await insertExpense(bill.idBill, value, date, description, 0, isInstallment, numberTimes, i + 1, idCategory, installmentControl = 0);
-                      console.log(expense);
-                    }
-                  }
-                });
-            }
-
-            cardExpense = {
-              idBill,
-              idCategory,
-              value,
-              date,
-              description,
-              recurringExpense,
-              isInstallment,
-              numberTimes,
-              currentInstallment,
-              "idCardExpense": result.insertId,
-            }
-
-            resolve(cardExpense);
-            return;
+        for (let i = 0; i < numberTimes - 1; i++) {
+          month++;
+          if (month == 13) {
+            month = 1;
+            year++;
           }
-        });
+
+          const bill = await insertBill(idCard, 0, month, year, 0, 0);
+          console.log(bill.idBill);
+          const expense = await insertExpense(bill.idBill, value, date, description, 0, isInstallment, numberTimes, i + 1, idCategory, installmentControl = 0);
+          console.log(expense);
+        }
+      }
+
+      cardExpense = {
+        idBill,
+        idCategory,
+        value,
+        date,
+        description,
+        recurringExpense,
+        isInstallment,
+        numberTimes,
+        currentInstallment,
+        "idCardExpense": insertExpenseResult.insertId,
+      }
+
+      resolve(cardExpense);
+      return;
+
     }
 
   })
