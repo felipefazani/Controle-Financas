@@ -30,7 +30,6 @@ async function insertAccount(idUser, bank, description, currentBalance, accountT
     if (accountType === undefined)
       varName = "accountType";
 
-
     if (varName) {
       reject({ msg: `${varName} is null, try again!`, error: true, code: 1000 });
       return;
@@ -54,6 +53,35 @@ async function insertAccount(idUser, bank, description, currentBalance, accountT
   });
 }
 
+async function getAccount(idUser) {
+  return new Promise(async (resolve, reject) => {
+    if (idUser === undefined) {
+      reject({ msg: "idUser is null, try again!", error: true, code: 1000 });
+      return;
+    } 
+    const query = `SELECT * FROM account WHERE id_user = '${idUser}'`;
+    const result = await databaseQuery(query);
+
+    if (result.length == 0) {
+      const userQuery = `SELECT * FROM user WHERE id_user = '${idUser}'`;
+      const userResult = await databaseQuery(userQuery);
+
+      let msg;
+      if (userResult.length == 0) {
+        msg = "This user doesn't exists in database!";
+      } else {
+        msg = "This user has no accounts in database!";
+      }
+
+      reject({ msg, error: true, code: 1001 });
+      return;
+    } else {
+      resolve(result);
+      return;
+    }
+  });
+}
+
 accountRouter.route('/insertAccount').post(async (req, res) => {
   const idUser = req.body.idUser;
   const bank = req.body.bank;
@@ -71,7 +99,14 @@ accountRouter.route('/insertAccount').post(async (req, res) => {
 });
 
 accountRouter.route('/getAccount').post(async (req, res) => {
+  const idUser = req.body.idUser;
 
+  try {
+    const result = await getAccount(idUser);
+    res.send(result);
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 
