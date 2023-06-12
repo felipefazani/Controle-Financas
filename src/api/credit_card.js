@@ -109,7 +109,7 @@ async function insertExpense(idBill, value, date, description, recurringExpense,
       varName = "currentInstallment";
 
     if (varName) {
-      resolve({ msg: `${varName} is null, try again!`, error: true, code: 1000 });
+      reject({ msg: `${varName} is null, try again!`, error: true, code: 1000 });
       return;
     }
     else {
@@ -140,9 +140,7 @@ async function insertExpense(idBill, value, date, description, recurringExpense,
           }
 
           const bill = await insertBill(idCard, 0, month, year, 0, 0);
-          console.log(bill.idBill);
           const expense = await insertExpense(bill.idBill, value, date, description, 0, isInstallment, numberTimes, i + 1, idCategory, installmentControl = 0);
-          console.log(expense);
         }
       }
 
