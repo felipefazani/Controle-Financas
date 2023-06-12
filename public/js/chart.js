@@ -1,5 +1,4 @@
 const ctx = document.getElementById('myChart');
-const ctx2 = document.getElementById('chartRelatorio');
 
 new Chart(ctx, {
   type: 'doughnut',
@@ -50,58 +49,6 @@ new Chart(ctx, {
 
 });
 
-// new Chart(ctx2, {
-//   type: 'bar',
-//   data: {
-//     labels: ['Receita', 'Despesa'],
-//     datasets: [{
-//       label: '',
-//       data: [12, 19, 3, 5, 2, 3],
-//       borderWidth: 0,
-//       backgroundColor: [
-//         '#1D9000',
-//         '#F12020'
-//       ],
-//     },]
-//   },
-//   options: {
-//     scales: {
-//       x: {
-//         beginAtZero: true,
-//         ticks: {
-//           // display: false
-//         },
-//         grid: {
-//           display: false,
-//           drawTicks: false
-//         },
-//         border: {
-//           display: false
-//         }
-//       },
-//       y: {
-//         beginAtZero: true,
-//         ticks: {
-//           display: false
-//         },
-//         grid: {
-//           display: false,
-//           drawTicks: false
-//         },
-//         border: {
-//           display: false
-//         }
-//       },
-//     },
-//     plugins: {
-//       legend: {
-//         display: false
-//       }
-//     }
-//   }
-// })
-
-
 const data = {
   labels: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01',
   '07/01', '08/01', '09/01', '10/01', '11/01', '12/01', '13/01',
@@ -129,10 +76,10 @@ const data = {
     borderColor: 'rgba(255, 26, 104, 1)',
     order: 2,
     datalabels: {
-      color: 'rgba(255, 26, 104, 1)',
-      anchor: 'end',
-      align: 'end',
-      offset: 5,
+      color: 'white',
+      // anchor: 'end',
+      // align: 'end',
+      // offset: 5,
       font: {
         weight: 'bold'
       }
@@ -159,7 +106,7 @@ const config = {
   options: {
     scales: {
       x: {
-        stacked: true,
+        // stacked: true,
         beginAtZero: true,
         ticks: {
           // display: false
@@ -179,7 +126,7 @@ const config = {
       },
       y: {
         grace: '5%',
-        stacked: true,
+        // stacked: true,
         beginAtZero: true,
         ticks: {
           display: false
