@@ -16,6 +16,7 @@ const app = express();
 const indexRouter = require('./src/routers/index.js');
 const authRouter = require('./src/routers/authRouter.js');
 const homeRouter = require('./src/routers/homeRouter.js');
+const lancamentosRouter = require('./src/routers/lancamentosRouter.js');
 const creditAPI = require('./src/api/credit_card.js');
 const accountAPI = require('./src/api/accounts.js');
 
@@ -41,7 +42,7 @@ app.post("/query", (req, res) => {
 app.set('views', './src/views');
 
 app.use('/home', homeRouter);
-app.use('/lancamentos', homeRouter);
+app.use('/lancamentos', lancamentosRouter);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api/creditCard', creditAPI);
