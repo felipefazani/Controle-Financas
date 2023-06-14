@@ -41,6 +41,7 @@ app.post("/query", (req, res) => {
 app.set('views', './src/views');
 
 app.use('/home', homeRouter);
+app.use('/lancamentos', homeRouter);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/api/creditCard', creditAPI);
