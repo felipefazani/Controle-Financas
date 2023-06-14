@@ -12,7 +12,7 @@ authRouter.route('/signUp').post((req, res) => {
   const pswd = req.body.password;
 
   if (pswd != req.body.confirmPassword) {
-    res.send({msg : "Incorrect password and confirm password"});
+    res.send({msg : "Incorrect password and confirm password", error:true, code:1000});
     // Error("Incorrect password and confirm password");
   } else {  
     bcrypt.hash(pswd, saltRound, (err, hash) => {
@@ -42,7 +42,7 @@ authRouter.route('/signUp').post((req, res) => {
               });
   
           } else {
-            res.send({ msg: "This user is already registered" });
+            res.send({ msg: "This user is already registered", error:true, code:1001 });
           }
         }
       );
