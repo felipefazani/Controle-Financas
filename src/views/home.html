@@ -45,25 +45,25 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a href="/lancamentos">
                             <i class='bx bx-wallet icon'></i>
-                            <span class="text nav-text">Carteira</span>
+                            <span class="text nav-text">Lançamentos</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a href="/relatorios">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Análise geral</span>
+                            <span class="text nav-text">Relatórios</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a href="/perfil">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">Perfil</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="">
+                        <a href="/notificacoes">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Notificações</span>
                         </a>
@@ -365,9 +365,9 @@
                         <div class="row">
                             <div class="col-6"></div>
                             <div class="col-6 my-3 text-center">
-                                <button class="btn btn-sm btn-secondary w-75">
+                                <a href="relatorios.html" class="btn btn-sm btn-secondary w-75">
                                     Relatório
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -491,7 +491,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Data</label>
-                                            <input class="form-control" type="text" id="data">
+                                            <input class="form-control" type="date" id="data">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -596,7 +596,7 @@
                                             </select>
                                         </div>
                                         <div class="col-4">
-                                            <label for="cvv">CVV</label>
+                                            <label for="cvv">Limite</label>
                                             <input class="form-control" type="text" id="cvv">
                                         </div>
                                     </div>
@@ -605,20 +605,33 @@
                                 <div class="row my-3">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="usuario">Número do cartão</label>
-                                            <input class="form-control" type="text" id="num_cartao">
+                                            <label for="usuario">Dia de fechamento</label>
+                                            <div class="row">
+                                                <div class="col p-1">
+                                                    <select class="form-control" id="dia_fechamento">
+                                                        <option>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                        <option>04</option>
+                                                        <option>...</option>
+                                                    </select>
+                                                </div>                         
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="usuario">Data de vencimento</label>
+                                            <label for="usuario">Dia de vencimento</label>
                                             <div class="row">
-                                                <div class="col-4">
-                                                    <input class="form-control" type="text" id="mes_cartao">
-                                                </div>
-                                                <div class="col-8">
-                                                    <input class="form-control" type="text" id="mes_cartao">
-                                                </div>
+                                                <div class="col p-1">
+                                                    <select class="form-control" id="dia_vencimento">
+                                                        <option>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                        <option>04</option>
+                                                        <option>...</option>
+                                                    </select>
+                                                </div>                           
                                             </div>
                                         </div>
                                     </div>
@@ -664,7 +677,5 @@
         crossorigin="anonymous"></script>
 
 </body>
-<script>
-    
-</script>
+
 </html>
