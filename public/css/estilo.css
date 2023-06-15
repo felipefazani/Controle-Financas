@@ -29,6 +29,13 @@ i{
     border: none;
 }
 
+.btn-perfil{
+    background: #695CFE;
+    width: 65px;
+    /* margin-right: 35px; */
+}
+
+
 /* Linha vertial (vertical line) */
 .vl{
     border-left: 1px solid black;
@@ -175,6 +182,12 @@ i{
 .botao-mes button{
     border: none;
     background: none;
+}
+
+.row .text-btn-perfil h6{
+    width: 65px;
+    text-align: center;
+    font-size: 10px;
 }
 
 /* ==== CORES DOS ÍCONES ==== */
