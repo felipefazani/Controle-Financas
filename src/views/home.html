@@ -87,13 +87,13 @@
     <section class="conteudo"> <!-- ==== INÍCIO DO CONTEÚDO PRINCIPAL ==== -->
         <div class="container my-5">
             <div class="row">
-                <h1 class="display-4 fs-4 fw-bold"> Boas-vindas <span id="boasvindas2" ></span></h1>
+                <h1 class="display-4 fs-4 fw-bold"> Boas-vindas <span id="boasvindas2"></span></h1>
             </div>
 
             <div class="row mt-4"> <!-- ==== PRIMERA ROW ===== -->
                 <div class="col-3">
                     <h5 class="display-4 fs-5">Saldo atual</h5>
-                    <h3 class="text-success">R$1700</h3>
+                    <h3 id="saldo1" class="text-success">R$1700</h3>
                 </div>
                 <div class="col-4 text-center">
                     <i class='bx bx-dollar-circle fs-1 text-success'></i>
@@ -491,7 +491,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Data</label>
-                                            <input class="form-control" type="date" id="data">
+                                            <input class="form-control" type="date" id="date">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -676,11 +676,12 @@
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
     <script>
+        let user; // Declaração da variável user como global
+
         fetch("/auth/profile", { method: "get" })
             .then(response => response.text())
             .then(data => {
                 user = JSON.parse(data);
-                console.log(user);
                 const ids = ["boasvindas1", "boasvindas2"];
 
                 ids.forEach(id => {
@@ -689,10 +690,36 @@
                         element.innerText = `${user.username}`;
                     }
                 });
+
+                const infoUser = {
+                    idUser: user.idUser
+                };
+
+                return fetch("/api/accounts/getAccount", {
+                    method: "post",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(infoUser)
+                });
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data)
+                const account = JSON.parse(data);
+                console.log(account[0])
+                console.log(account[0].current_balance)
+                const ids = ["saldo1", "saldo2"];
+
+                ids.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.innerText = `R$${account[account.length - 1].current_balance}`;
+                    }
+                });
             })
             .catch(error => {
                 console.log("Ocorreu um erro:", error);
             });
+
     </script>
 
 </body>
