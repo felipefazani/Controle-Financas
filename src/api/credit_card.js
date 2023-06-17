@@ -257,8 +257,12 @@ creditRouter.route("/insertBill").post(async (req, res) => {
   const paid = 0; // 0 or 1
   const valuePaid = 0;
 
-  const result = await insertBill(idCard, price, month, year, paid, valuePaid);
-  res.send(result);
+  try {
+    const result = await insertBill(idCard, price, month, year, paid, valuePaid);
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 creditRouter.route("/getBill").post(async (req, res) => {
