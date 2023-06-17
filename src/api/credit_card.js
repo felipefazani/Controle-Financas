@@ -45,6 +45,15 @@ async function insertBill(idCard, price, month, year, paid, valuePaid) {
       reject({ msg: "price cannot be less than 0", error: true, code: 1000 });
       return;
     } else {
+      
+      const cardQuery = `SELECT * FROM credit_card WHERE id_card=${idCard}`
+      const cardResult = await databaseQuery(cardQuery);
+
+      console.log(cardResult);
+      if (cardResult.length == 0) {
+        reject({ msg: `Card (id: ${idCard} doesn't exist in database!)`, error: true, code: 1001 });
+        return;
+      }
       // check if the bill already exists
       const billQuery = `SELECT * FROM card_bill WHERE id_card=${idCard} AND month=${month} AND year=${year}`;
       const billResult = await databaseQuery(billQuery);
@@ -82,6 +91,7 @@ async function insertBill(idCard, price, month, year, paid, valuePaid) {
 
       }
     }
+
   });
 }
 
