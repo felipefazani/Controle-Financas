@@ -51,7 +51,7 @@ async function insertBill(idCard, price, month, year, paid, valuePaid) {
 
       console.log(cardResult);
       if (cardResult.length == 0) {
-        reject({ msg: `Card (id: ${idCard} doesn't exist in database!)`, error: true, code: 1001 });
+        reject({ msg: `This Card doesn't exist in database!`, error: true, code: 1001 });
         return;
       }
       // check if the bill already exists
@@ -127,6 +127,15 @@ async function insertExpense(idBill, value, date, description, recurringExpense,
         value = value / numberTimes;
         currentInstallment = currentInstallment + 1;
       }
+
+      const getBillQuery = `SELECT * FROM card_bill WHERE id_bill = ${idBill}`
+      const getBillResult = await databaseQuery(getBillQuery);
+      
+      if (getBillResult.length == 0) {
+        reject({ msg: `This bill doesn't exist in database!`, error: true, code: 1001 });
+        return;
+      }
+
       const insertExpenseQuery = `INSERT INTO card_expense (id_bill, category, value, date, description, recurring_expense, is_installment, number_of_times, current_installment)
                                   VALUES ('${idBill}', '${idCategory}', '${value}', '${date}', '${description}', '${recurringExpense}', '${isInstallment}', '${numberTimes}', '${currentInstallment}')`;
       const insertExpenseResult = await databaseQuery(insertExpenseQuery);
@@ -313,10 +322,15 @@ creditRouter.route("/insertExpense").post(async (req, res) => {
   const currentInstallment = 0;
   const idCategory = req.body.idCategory;
 
-  const result = await insertExpense(
-    idBill, value, date, description, recurringExpense, isInstallment, numberTimes, currentInstallment, idCategory
-  );
-  res.send(result);
+  try {
+    const result = await insertExpense(
+      idBill, value, date, description, recurringExpense, isInstallment, numberTimes, currentInstallment, idCategory
+    );
+    res.send(result);
+
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 creditRouter.route("/getExpense").post(async (req, res) => {
