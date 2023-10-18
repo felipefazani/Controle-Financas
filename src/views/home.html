@@ -512,7 +512,7 @@
                                     <textarea class="form-control" id="mensagem" rows="3"></textarea>
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <div class="row my-3 botao-repetir" onclick="repetir()">
                                         <div class="col-1">
                                             <i class='bx bx-repeat repetir'></i>
@@ -556,10 +556,10 @@
                                             value="option2">receita fixa
                                         <label class="form-check-label" for="radio2"></label>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="d-flex justify-content-center">
-                                    <button class="my-5" id="botao-salvar" style="border: none;">
+                                    <button class="my-5" id="botao-salvar" style="border: none;" onclick="await insertTransaction()">
                                         <i class='bx bx-check salvar'></i>
                                     </button>
                                 </div>
@@ -677,6 +677,23 @@
         crossorigin="anonymous"></script>
     <script>
         let user; // Declaração da variável user como global
+        async function useAPI(url = "", data = {}, method="post") {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin", // include, *same-origin, omit
+                headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: "follow", // manual, *follow, error
+                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data), // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
 
         fetch("/auth/profile", { method: "get" })
             .then(response => response.text())
@@ -703,10 +720,10 @@
             })
             .then(response => response.text())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 const account = JSON.parse(data);
-                console.log(account[0])
-                console.log(account[0].current_balance)
+                // console.log(account[0])
+                // console.log(account[0].current_balance)
                 const ids = ["saldo1", "saldo2"];
 
                 ids.forEach(id => {
@@ -719,6 +736,46 @@
             .catch(error => {
                 console.log("Ocorreu um erro:", error);
             });
+
+        async function insertTransaction() {
+            alert("adçsjfkldsjfçlkdjfldkjf")
+            // function _type (tituloModal) {
+            //     let isRecipe;
+            //     if (tituloModal == "Nova Receita") {
+            //         isRecipe = 1;
+            //     } else if (tituloModal == "Nova Despesa") {
+            //         isRecipe = 0;
+            //     } 
+            //     return isRecipe;
+            // }
+            // const descricao = document.getElementById("descricao").value;
+            // const valor = Number(document.getElementById("valor").value);
+            // const date = document.getElementById("date").value;
+            // const categorias = document.getElementById("categorias").value;
+            // const tituloModal = document.getElementById("tituloModal").value;
+            // const type = _type(tituloModal);
+            // // date, value, type, description, idAccount, idCategory
+            // data = {
+            //     idUser: user.idUser
+            // }
+            // const accounts = await useAPI("/api/accounts/getAccount", data);
+            // if (accounts.error) {
+            //     alert(accounts.msg);
+            // }
+
+            // const idAccount = accounts[0].id_account;
+            
+            // transaction = {
+            //     "type": type,
+            //     "value": valor,
+            //     "description": descricao,
+            //     "idAccount": idAccount,
+            //     "idCategory": 29
+            // };
+            // console.log(transaction);
+            // result = await useAPI("/api/accounts/insertTransaction", transaction);
+            // alert(`Não há ferrolhos ${result}`);
+        }
 
     </script>
 
