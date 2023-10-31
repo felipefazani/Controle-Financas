@@ -20,10 +20,21 @@ i{
     color: #ffffff;
 }
 
+.mr{
+    margin-right: 10px;
+}
+
 .botao{
     background: transparent;
     border: none;
 }
+
+.btn-perfil{
+    background: #695CFE;
+    width: 65px;
+    /* margin-right: 35px; */
+}
+
 
 /* Linha vertial (vertical line) */
 .vl{
@@ -166,6 +177,17 @@ i{
 .form-group select,
 .form-group textarea{
     border: 1px solid black;
+}
+
+.botao-mes button{
+    border: none;
+    background: none;
+}
+
+.row .text-btn-perfil h6{
+    width: 65px;
+    text-align: center;
+    font-size: 10px;
 }
 
 /* ==== CORES DOS ÍCONES ==== */

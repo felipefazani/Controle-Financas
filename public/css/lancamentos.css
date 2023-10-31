@@ -1,0 +1,23 @@
+
+.tabela-dia span{
+    color: #8c8c8c;
+}
+
+table tr td{
+    font-weight: bold;
+    color: rgb(56, 56, 56);
+}
+
+.row .col-2 .icone{
+    width: 40px;
+    height: 40px;
+    border-radius: 180px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-receita{
+    background: rgb(132, 0, 194);
+}

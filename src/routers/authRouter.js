@@ -12,7 +12,7 @@ authRouter.route('/signUp').post((req, res) => {
   const pswd = req.body.password;
 
   if (pswd != req.body.confirmPassword) {
-    res.send({msg : "Incorrect password and confirm password"});
+    res.send({msg : "Incorrect password and confirm password", error:true, code:1000});
     // Error("Incorrect password and confirm password");
   } else {  
     bcrypt.hash(pswd, saltRound, (err, hash) => {
@@ -25,7 +25,7 @@ authRouter.route('/signUp').post((req, res) => {
   
           if (result.length == 0) {
             conn.query(
-              `INSERT INTO user values (NULL, '${name}', '${email}', '${hash}')`,
+              `INSERT INTO user (name, email, password) values ('${name}', '${email}', '${hash}')`,
               (err, result) => {
                 if (err) {
                   res.send(err);
@@ -33,6 +33,7 @@ authRouter.route('/signUp').post((req, res) => {
                 user = {
                   username: req.body.username,
                   email: req.body.email,
+                  idUser: result.insertId,
                 }
                 req.login(user, () => {
                   console.log({ msg: "Registered completed" });
@@ -41,7 +42,7 @@ authRouter.route('/signUp').post((req, res) => {
               });
   
           } else {
-            res.send({ msg: "This user is already registered" });
+            res.send({ msg: "This user is already registered", error:true, code:1001 });
           }
         }
       );
@@ -56,6 +57,13 @@ authRouter
     successRedirect: '/home',
     failureMessage: '/'
   }));
+
+authRouter.route('/loggout').get((req, res, next) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+})
 
 authRouter.route('/profile').get((req, res) => {
   res.json(req.user);
