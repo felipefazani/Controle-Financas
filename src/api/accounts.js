@@ -45,7 +45,7 @@ async function insertAccount(idUser, bank, description, currentBalance, accountT
 
     const insertAccountQuery = `INSERT INTO account (id_user, bank_institution, description, current_balance, account_type)
                                 VALUES ('${idUser}', '${bank}', '${description}', '${currentBalance}', '${accountType}')`;
-    const insertAccountResult = await databaseQuery(insertAccountQuery);
+    const insertAccountResult = await databaseQuery(insertAccountQuery); 
 
     const account = {
       idAccount: insertAccountResult.insertId,

@@ -25,7 +25,7 @@ authRouter.route('/signUp').post((req, res) => {
   
           if (result.length == 0) {
             conn.query(
-              `INSERT INTO user values (NULL, '${name}', '${email}', '${hash}')`,
+              `INSERT INTO user (name, email, password) values ('${name}', '${email}', '${hash}')`,
               (err, result) => {
                 if (err) {
                   res.send(err);

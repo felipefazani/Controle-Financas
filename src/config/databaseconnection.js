@@ -16,7 +16,7 @@ const config =
 };
 
 
-const conn = new mysql.createConnection(config);
+const conn = new mysql.createConnection(database);
 conn.connect(
   function (err) {
       if (err) {
