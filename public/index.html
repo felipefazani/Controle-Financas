@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-Vindo</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <section class="d-flex align-items-center">
+        <div class="container w-50 h-75">
+            <div class="row h-100">
+                <div class="col-6 vl d-flex align-items-center m-0">
+                    <div class="switch d-flex justify-content-center w-100 d-none">
+                        <button class="btn btn-outline-primary w-50" onclick="log_cad('login')">Fazer login</button>
+                    </div>
+                    <div id="login" class="w-100">
+                        <h2 class="text-center my-3 fw-bolder">
+                            <i class='bx bxs-user-circle text-primary' style="font-size: 120px;"></i><br>
+                            Faça seu login
+                        </h2>
+                        <form id="loginForm" action="/auth/signIn" method="post">
+                            <div class="mb-3">
+                                <label>Email:</label>
+                                <input type="email" class="form-control" name="email" id="login_email">
+                            </div>
+                            <div class="mb-3">
+                                <label>Senha:</label>
+                                <input type="password" class="form-control" name="password" id="login_password">
+                            </div>
+                            <button type="submit" class="btn w-100 my-4 btn-primary">Enviar</button>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-6 d-flex align-items-center m-0">
+                    <div class="switch d-flex justify-content-center w-100">
+                        <button class="btn btn-outline-primary w-50" onclick="log_cad('cad')">Criar uma conta</button>
+                    </div>
+                    <div id="cadastro" class="w-100 d-none">
+                        <h2 class="text-center my-3 fw-bolder">
+                            Faça seu cadastro
+                        </h2>
+                        <form id="registerForm" action="/auth/signUp" method="post">
+                            <div class="mb-3">
+                                <label>Nome:</label>
+                                <input type="nome" class="form-control" name="username" id="register_name">
+                            </div>
+                            <div class="mb-3">
+                                <label>Email:</label>
+                                <input type="email" class="form-control" name="email" id="register_email">
+                            </div>
+                            <div class="mb-3">
+                                <label>Senha:</label>
+                                <input type="password" class="form-control" name="password" id="register_password">
+                            </div>
+                            <div class="mb-3">
+                                <label>Confime sua senha:</label>
+                                <input type="password" class="form-control" name="confirmPassword" id="register_confirmPassword">
+                            </div>
+                            <button type="submit" class="btn w-100 my-4 btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+<script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+    integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+    integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+    crossorigin="anonymous"></script>
+
+</html>
