@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/40cd091e-89b4-4681-8985-b90416600a8f/resourceGroups/finance-control-tcc_group/providers/Microsoft.Web/sites/finance-system",
+    "appService.deploySubpath": "."
+}
