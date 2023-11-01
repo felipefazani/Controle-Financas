@@ -93,3 +93,18 @@ async function getTransactions(idAccount) {
 
   return transactions;
 }
+
+async function getCategories() {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+  }
+
+  await fetch("/api/creditCard/getCategory", options)
+    .then(response => response.text())
+    .then(data => {
+      categories = JSON.parse(data);
+    })
+
+  return categories;
+}
