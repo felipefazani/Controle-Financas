@@ -16,6 +16,35 @@ async function main() {
   if (saldoElement) {
     saldoElement.innerText = `R$${user.account.current_balance}`;
   }
+
+  transactions = await getTransactions(user.account.id_account);
+  currentDate = new Date();
+
+  currentMonthTrans = transactions.filter(transaction =>
+    new Date(transaction.date).getMonth() == currentDate.getMonth() & new Date(transaction.date).getYear() == currentDate.getYear()
+  );
+
+  currMonthIncome = 0;
+  currentMonthTrans.filter(trans => trans.type == 1).forEach(trans => {
+    currMonthIncome += trans.value;
+  });
+  
+  currMonthExpense = 0;
+  currentMonthTrans.filter(trans => trans.type == 0).forEach(trans => {
+    currMonthExpense += trans.value;
+  });
+
+  currMonthIncomeElem = document.getElementById("receitaMensal");
+  currMonthIncomeElem.innerText = `R$ ${currMonthIncome}`;
+
+  currMonthExpenseElem = document.getElementById("despesaMensal");
+  if (currMonthExpense != 0) {
+    currMonthExpenseElem.innerText = `R$ -${currMonthExpense}`;
+  } else {
+    currMonthExpenseElem.innerText = `R$ ${currMonthExpense}`;
+  }
+
+  
 }
 
 main();

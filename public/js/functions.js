@@ -231,5 +231,3 @@ async function insertCard(idUser, cardName, cardBrand, closeDate, creditLimit, d
 
   return card;
 }
-
-console.log(insertCard(3, "test", "Visa", 30, 3000, 12));
