@@ -1,40 +1,76 @@
-let user; // Declaração da variável user como global
+async function getUserProfile() {
+  await fetch("/auth/profile", { method: "get" })
+    .then(response => response.text())
+    .then(data => {
+      user = JSON.parse(data);
+    })
 
-fetch("/auth/profile", { method: "get" })
-  .then(response => response.text())
-  .then(data => {
-    user = JSON.parse(data);
-    const ids = ["boasvindas1", "boasvindas2"];
+  return user;
+}
 
-    ids.forEach(id => {
-      const element = document.getElementById(id);
-      if (element) {
-        element.innerText = `${user.username}`;
-      }
-    });
+async function createUserAccount(userId) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idUser: userId,
+      bank: "standard",
+      description: "first account",
+      currentBalance: 0
+    })
+  }
 
-    const infoUser = {
-      idUser: user.idUser
-    };
+  await fetch("/api/accounts/insertAccount", options)
+    .then(response => response.text())
+    .then(data => {
+      account = JSON.parse(data);
+    })
 
-    return fetch("/api/accounts/getAccount", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(infoUser)
-    });
-  })
-  .then(response => response.text())
-  .then(data => {
-    const account = JSON.parse(data);
-    const ids = ["saldo1", "saldo2"];
+  return account;
+}
 
-    ids.forEach(id => {
-      const element = document.getElementById(id);
-      if (element) {
-        element.innerText = `R$${account[account.length - 1].current_balance}`;
-      }
-    });
-  })
-  .catch(error => {
-    console.log("Ocorreu um erro:", error);
-  });
+async function getUserAccounts(userId) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idUser: userId
+    })
+  }
+
+  await fetch("/api/accounts/getAccount", options)
+    .then(response => response.text())
+    .then(data => {
+      accounts = JSON.parse(data);
+    })
+
+  if (accounts.error) {
+    if (accounts.msg == "This user has no accounts in database!") {
+      return await createUserAccount(userId);
+    }
+  } else {
+    return accounts[0];
+  }
+}
+
+async function main() {
+  // add user name in page
+  user = await getUserProfile();
+  const ids = ["boasvindas1", "boasvindas2"];
+
+  for (let i = 0; i < ids.length; i++) {
+    const element = document.getElementById(ids[i]);
+    element.innerText = `${user.username}`;
+  }
+
+  // get user account
+  user.account = await getUserAccounts(user.idUser);
+  console.log(user);
+
+  const saldoElement = document.getElementById("saldo1");
+  if (saldoElement) {
+    saldoElement.innerText = `R$${user.account.current_balance}`;
+  }
+}
+
+main();
