@@ -53,6 +53,29 @@ async function getUserAccounts(userId) {
   }
 }
 
+async function insertTransactions(isInput, date, value, description, idAccount, idCategory) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      date: date,
+      type: isInput,
+      value: value,
+      description: description,
+      idAccount: idAccount,
+      idCategory: idCategory,
+    })
+  }
+
+  await fetch("/api/accounts/insertTransactions", options)
+    .then(response => response.text())
+    .then(data => {
+      transaction = JSON.parse(data);
+    })
+
+  return transaction;
+}
+
 async function main() {
   // add user name in page
   user = await getUserProfile();
