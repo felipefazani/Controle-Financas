@@ -191,4 +191,45 @@ async function insertBill(idCard, month, year) {
   return bill;
 }
 
-console.log(getBill(1));
+async function getCard(idUser) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idUser: idUser,
+    })
+  }
+
+  await fetch("/api/creditCard/getCard", options)
+    .then(response => response.text())
+    .then(data => {
+      cards = JSON.parse(data);
+    })
+
+  return cards;
+}
+
+async function insertCard(idUser, cardName, cardBrand, closeDate, creditLimit, dueDate) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idUser, 
+      cardName, 
+      cardBrand, 
+      closeDate, 
+      creditLimit, 
+      dueDate,
+    })
+  }
+
+  await fetch("/api/creditCard/insertCard", options)
+    .then(response => response.text())
+    .then(data => {
+      card = JSON.parse(data);
+    })
+
+  return card;
+}
+
+console.log(insertCard(3, "test", "Visa", 30, 3000, 12));
