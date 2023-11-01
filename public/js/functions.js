@@ -147,8 +147,48 @@ async function insertExpense(idBill, date, value, description, recurringExpense,
   await fetch("/api/creditCard/insertExpense", options)
     .then(response => response.text())
     .then(data => {
-      transaction = JSON.parse(data);
+      expense = JSON.parse(data);
     })
 
-  return transaction;
+  return expense;
 }
+
+async function getBill(idCard) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idCard: idCard,
+    })
+  }
+
+  await fetch("/api/creditCard/getBill", options)
+    .then(response => response.text())
+    .then(data => {
+      bills = JSON.parse(data);
+    })
+
+  return bills;
+}
+
+async function insertBill(idCard, month, year) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      idCard: idCard,
+      month: month,
+      year: year
+    })
+  }
+
+  await fetch("/api/creditCard/insertBill", options)
+    .then(response => response.text())
+    .then(data => {
+      bill = JSON.parse(data);
+    })
+
+  return bill;
+}
+
+console.log(getBill(1));
