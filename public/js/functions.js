@@ -126,3 +126,29 @@ async function insertCategories(category) {
 
   return inserted;
 }
+
+async function insertExpense(idBill, date, value, description, recurringExpense, idCategory, isInstallment, numberTimes) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      date: date,
+      idBill: idBill,
+      value: value,
+      description: description,
+      recurringExpense: recurringExpense,
+      idCategory: idCategory,
+      isInstallment,
+      numberTimes,
+      currentInstallment: 0
+    })
+  }
+
+  await fetch("/api/creditCard/insertExpense", options)
+    .then(response => response.text())
+    .then(data => {
+      transaction = JSON.parse(data);
+    })
+
+  return transaction;
+}
