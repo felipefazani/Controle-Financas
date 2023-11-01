@@ -108,3 +108,21 @@ async function getCategories() {
 
   return categories;
 }
+
+async function insertCategories(category) {
+  options = {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      category: category
+    })
+  }
+
+  await fetch("/api/creditCard/insertCategory", options)
+    .then(response => response.text())
+    .then(data => {
+      inserted = JSON.parse(data);
+    })
+
+  return inserted;
+}
