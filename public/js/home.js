@@ -30,7 +30,7 @@ async function main() {
   currentMonthTrans.filter(trans => trans.type == 1).forEach(trans => {
     currMonthIncome += trans.value;
   });
-  
+
   currMonthExpense = 0;
   currentMonthTrans.filter(trans => trans.type == 0).forEach(trans => {
     currMonthExpense += trans.value;
@@ -46,7 +46,13 @@ async function main() {
     currMonthExpenseElem.innerText = `R$ ${currMonthExpense}`;
   }
 
-  
+  // get categories
+  categories = await getCategories();
+  catElem = document.getElementById("categorias");
+
+  for (let i = 0; i < categories.length; i++) {
+    catElem.innerHTML += `<option value=${categories[i].id_category}> ${categories[i].name_category} </option>`;
+  }
 }
 
 main();
