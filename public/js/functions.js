@@ -33,15 +33,15 @@ async function getUserAccounts(userId) {
   options = {
     method: "post",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
+    body: await JSON.stringify({
       idUser: userId
     })
   }
 
   await fetch("/api/accounts/getAccount", options)
     .then(response => response.text())
-    .then(data => {
-      accounts = JSON.parse(data);
+    .then(async data => {
+      accounts = await JSON.parse(data);
     })
 
   if (accounts.error) {

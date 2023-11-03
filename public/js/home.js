@@ -14,6 +14,8 @@ async function main() {
 
   const saldoElement = document.getElementById("saldo1");
   if (saldoElement) {
+    if (user.account.current_balance == undefined)
+      user.account.current_balance = 0;
     saldoElement.innerText = `R$${user.account.current_balance}`;
   }
 
