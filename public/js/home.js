@@ -48,7 +48,7 @@ async function main() {
 
   // get categories
   categories = await getCategories();
-  catElem = document.getElementById("categorias");
+  catElem = document.getElementById("categoriasDespesa");
 
   for (let i = 0; i < categories.length; i++) {
     catElem.innerHTML += `<option value=${categories[i].id_category}> ${categories[i].name_category} </option>`;
@@ -56,3 +56,21 @@ async function main() {
 }
 
 main();
+
+
+async function salvarDadosReceita(){
+  const descricao = document.getElementById('descricaoReceita')
+  const valor = document.getElementById('valorReceita')
+  const data = document.getElementById('dataReceita')
+  const categoria = document.getElementById('categoriasReceita')
+  // const observacao = document.getElementById('observacaoReceita')
+  insertTransactions(1, data.value, valor.value, descricao.value, user.account.id_account, categoria.value)
+}
+
+async function salvarDadosDespesa(){
+  const descricao = document.getElementById('descricaoDespesa')
+  const valor = document.getElementById('valorDespesa')
+  const data = document.getElementById('dataDespesa')
+  const categoria = document.getElementById('categoriasDespesa')
+  insertTransactions(0, data.value, valor.value, descricao.value, user.account.id_account, categoria.value)
+}

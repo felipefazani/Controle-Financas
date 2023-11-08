@@ -478,36 +478,39 @@
                                 <!-- caixas de texto -->
                                 <div class="form-group">
                                     <label for="usuario">Descrição</label>
-                                    <input class="form-control" type="text" id="descricao">
+                                    <input class="form-control" type="text" id="descricaoReceita">
                                 </div>
 
                                 <div class="row my-3">
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Valor</label>
-                                            <input class="form-control" type="text" id="valor">
+                                            <input class="form-control" type="text" id="valorReceita">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Data</label>
-                                            <input class="form-control" type="date" id="date">
+                                            <input class="form-control" type="date" id="dataReceita">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="estados">Categoria</label>
-                                            <select class="form-control" id="categorias">
-                                                
+                                            <select class="form-control" id="categoriasReceita">
+                                                <option value="1">Investimento</option>
+                                                <option value="2">Vendas</option>
+                                                <option value="3">Salário</option>
+                                                <option value="4">Outros</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- textarea -->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="mensagem">Observação (opcional)</label>
-                                    <textarea class="form-control" id="mensagem" rows="3"></textarea>
-                                </div>
+                                    <textarea class="form-control" id="observacaoReceita" rows="3"></textarea>
+                                </div> -->
 
                                 <!-- <div class="form-group">
                                     <div class="row my-3 botao-repetir" onclick="repetir()">
@@ -557,7 +560,7 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button class="my-5" id="botao-salvar" style="border: none;">
-                                        <i class='bx bx-check salvar'></i>
+                                        <i class='bx bx-check salvar' onclick="salvarDadosReceita()"></i>
                                     </button>
                                 </div>
 
@@ -583,36 +586,36 @@
                                 <!-- caixas de texto -->
                                 <div class="form-group">
                                     <label for="usuario">Descrição</label>
-                                    <input class="form-control" type="text" id="descricao">
+                                    <input class="form-control" type="text" id="descricaoDespesa">
                                 </div>
 
                                 <div class="row my-3">
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Valor</label>
-                                            <input class="form-control" type="text" id="valor">
+                                            <input class="form-control" type="text" id="valorDespesa">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="usuario">Data</label>
-                                            <input class="form-control" type="date" id="date">
+                                            <input class="form-control" type="date" id="dataDespesa">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="estados">Categoria</label>
-                                            <select class="form-control" id="categorias">
+                                            <select class="form-control" id="categoriasDespesa">
                                                 
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- textarea -->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="mensagem">Observação (opcional)</label>
                                     <textarea class="form-control" id="mensagem" rows="3"></textarea>
-                                </div>
+                                </div> -->
 
                                 <!-- <div class="form-group">
                                     <div class="row my-3 botao-repetir" onclick="repetir()">
@@ -662,7 +665,7 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button class="my-5" id="botao-salvar" style="border: none;">
-                                        <i class='bx bx-check salvar'></i>
+                                        <i class='bx bx-check salvar' onclick="salvarDadosDespesa()"></i>
                                     </button>
                                 </div>
 
