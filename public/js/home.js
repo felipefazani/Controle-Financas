@@ -53,11 +53,97 @@ async function main() {
   for (let i = 0; i < categories.length; i++) {
     catElem.innerHTML += `<option value=${categories[i].id_category}> ${categories[i].name_category} </option>`;
   }
+
+//  Show transaction values in 'Contas a Pagar' div
+lista_itens_hoje = document.getElementById('lista_itens_hoje')
+transactions.forEach(trans => {
+  if(trans.type == 0){
+    const li = document.createElement("li")
+    li.classList = 'item'
+
+    const col_icon = document.createElement("div")
+    col_icon.classList = 'col-1'
+    li.appendChild(col_icon)
+
+    const icon = document.createElement("i")
+    icon.classList = 'bx item-icon'
+    col_icon.appendChild(icon)
+    
+    const col_category_name = document.createElement("div")
+    col_category_name.classList = 'col-6'
+    li.appendChild(col_category_name)
+
+    const row_category_name = document.createElement("div")
+    row_category_name.classList = 'row'
+    col_category_name.appendChild(row_category_name)
+
+    const span_category_name = document.createElement("span")
+    row_category_name.appendChild(span_category_name)
+
+    const row_date = document.createElement("div")
+    row_date.classList = 'row'
+    col_category_name.appendChild(row_date)
+
+    const small_date = document.createElement("small")
+    small_date.innerText = "02/02/02"
+    row_date.appendChild(small_date)
+
+    const col_value = document.createElement("div")
+    col_value.classList = 'col-3 text-end'
+    li.appendChild(col_value)
+
+    const span_value = document.createElement("span")
+    span_value.innerText = "R$" + trans.value
+    col_value.appendChild(span_value)
+
+
+    switch(trans.id_category){
+      case "2":
+        icon.classList.add("bxs-cart", "mercado")
+        span_category_name.innerText = 'Mercado'
+        break
+      case "3":
+        icon.classList.add("bxl-amazon", "online")
+        span_category_name.innerText = 'Compras'
+        break
+      case "4":
+        icon.classList.add("bx-closet", "roupa")
+        span_category_name.innerText = 'Roupas'
+        break
+      default:
+        span_category_name.innerText = 'Default'
+        icon.classList.add("bx-dollar")
+    }
+
+    lista_itens_hoje.appendChild(li)
+  }
+
+  
+  
+
+
+const ul_cartoes = document.querySelectorAll('.secao-ul-cartoes')
+const ul_contas = document.querySelectorAll('.secao-ul-contas')
+
+ul_cartoes.forEach(ul => {
+    if (ul.offsetHeight > 320)
+        ul.style = " max-height: 320px; overflow-y: scroll; overflow-x: hidden;"
+})
+
+ul_contas.forEach(ul => {
+    if (ul.offsetHeight > 160)
+        ul.style = "max-height: 160px; overflow-y: scroll; overflow-x: hidden;"
+})
+
+
+});
+ 
 }
 
 main();
 
 
+// Insert Receita
 async function salvarDadosReceita(){
   const descricao = document.getElementById('descricaoReceita')
   const valor = document.getElementById('valorReceita')
@@ -67,6 +153,7 @@ async function salvarDadosReceita(){
   insertTransactions(1, data.value, valor.value, descricao.value, user.account.id_account, categoria.value)
 }
 
+// Insert Despesa
 async function salvarDadosDespesa(){
   const descricao = document.getElementById('descricaoDespesa')
   const valor = document.getElementById('valorDespesa')
