@@ -46,7 +46,7 @@ async function getUserAccounts(userId) {
 
   if (accounts.error) {
     if (accounts.msg == "This user has no accounts in database!") {
-      return await createUserAccount(userId);
+      return "withoutAccount";
     }
   } else {
     return accounts[0];
