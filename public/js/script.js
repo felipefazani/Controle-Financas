@@ -11,6 +11,19 @@
 //         ul.style = "max-height: 160px; overflow-y: scroll; overflow-x: hidden;"
 // })
 
+const dia_fechamento = document.getElementById('dia_fechamento')
+for(let i = 1; i <= 31; i++){
+    const select_fechamento = document.getElementById('dia_fechamento')
+    const select_vencimento = document.getElementById('dia_vencimento')
+    const opcao = document.createElement("option")
+    const opcao2 = document.createElement("option")
+    opcao.innerText = i
+    opcao2.innerText = i
+    opcao.id = i
+    opcao2.id = i
+    select_fechamento.appendChild(opcao)
+    select_vencimento.appendChild(opcao2)
+}
 
 function dispararModal(tipo) {
     const tituloModal = document.querySelector('#tituloModal')

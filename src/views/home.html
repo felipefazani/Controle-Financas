@@ -130,7 +130,8 @@
                         <h4>Contas a pagar</h4>
                         <span class="d-block display-1 text-center fs-5 text-danger my-3">Hoje</span>
                         <ul class="lista-itens secao-ul-contas" id="lista_itens_hoje">
-                            <li class="item">
+                            <h6 class="text-center" id="sem_dados_contas_hoje">Nenhum dado encontrado</h6>
+                                <!-- <li class="item">
                                 <div class="col-1">
                                     <i class='bx bxs-cart item-icon mercado'></i>
                                 </div>
@@ -145,30 +146,14 @@
                                 <div class="col-3 text-end">
                                     <span>R$-200</span>
                                 </div>
-                            </li>
-
-                            <li class="item">
-                                <div class="col-1">
-                                    <i class='bx bxs-shopping-bags item-icon shopping'></i>
-                                </div>
-                                <div class="col-6">
-                                    <div class="row">
-                                        <span>Shopping</span>
-                                    </div>
-                                    <div class="row">
-                                        <small>22/03/2023</small>
-                                    </div>
-                                </div>
-                                <div class="col-3 text-end">
-                                    <span>R$-400</span>
-                                </div>
-                            </li>
+                            </li> -->
                         </ul>
 
                         <span class="d-block display-1 text-center fs-5 text-secondary my-3">Próximas</span>
 
-                        <ul class="lista-itens secao-ul-contas">
-                            <li class="item">
+                        <ul class="lista-itens secao-ul-contas" id="lista_itens_proximos">
+                            <h6 class="text-center" id="sem_dados_contas_proximas">Nenhum dado encontrado</h6>
+                            <!-- <li class="item">
                                 <div class="col-1">
                                     <i class='bx bxl-amazon item-icon online'></i>
                                 </div>
@@ -183,32 +168,16 @@
                                 <div class="col-3 text-end">
                                     <span>R$-1000</span>
                                 </div>
-                            </li>
-
-                            <li class="item">
-                                <div class="col-1">
-                                    <i class='bx bx-closet item-icon roupa'></i>
-                                </div>
-                                <div class="col-6">
-                                    <div class="row">
-                                        <span>Roupa</span>
-                                    </div>
-                                    <div class="row">
-                                        <small>22/03/2023</small>
-                                    </div>
-                                </div>
-                                <div class="col-3 text-end">
-                                    <span>R$-350</span>
-                                </div>
-                            </li>
+                            </li> -->
 
                         </ul>
                     </div>
 
                     <div class="col-4">
                         <h4>Cartão de crédito</h4>
-                        <ul class="lista-itens px-3 secao-ul-cartoes">
-                            <li class="item">
+                        <ul class="lista-itens px-3 secao-ul-cartoes" id="lista_cartoes">
+                            <h6 class="text-center" id="sem_dados_cartao">Nenhum dado encontrado</h6>
+                            <!-- <li class="item">
                                 <div class="col-1">
                                     <i class='bx bxl-paypal item-icon paypal'></i>
                                 </div>
@@ -318,7 +287,7 @@
                                         <small class="d-flex justify-content-end fs-9 fw-lighter">R$1200</small>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
 
                         <div class="row justify-content-center">
@@ -559,8 +528,8 @@
                                 </div> -->
 
                                 <div class="d-flex justify-content-center">
-                                    <button class="my-5" id="botao-salvar" style="border: none;">
-                                        <i class='bx bx-check salvar' onclick="salvarDadosReceita()"></i>
+                                    <button class="my-5" id="botao-salvar" onclick="salvarDadosReceita()" style="border: none;">
+                                        <i class='bx bx-check salvar'></i>
                                     </button>
                                 </div>
 
@@ -664,8 +633,8 @@
                                 </div> -->
 
                                 <div class="d-flex justify-content-center">
-                                    <button class="my-5" id="botao-salvar" style="border: none;">
-                                        <i class='bx bx-check salvar' onclick="salvarDadosDespesa()"></i>
+                                    <button class="my-5" id="botao-salvar" onclick="salvarDadosDespesa()" style="border: none;">
+                                        <i class='bx bx-check salvar'></i>
                                     </button>
                                 </div>
 
@@ -693,16 +662,16 @@
                                     <div class="row">
                                         <div class="col-8">
                                             <label for="estados">Bandeira do cartão</label>
-                                            <select class="form-control" id="bandeira">
-                                                <option></option>
-                                                <option></option>
-                                                <option></option>
-                                                <option>...</option>
+                                            <select class="form-control" id="bandeiraCartao">
+                                                <option value="Mastercard">Mastercard</option>
+                                                <option value="Visa">Visa</option>
+                                                <option value="Paypal">Paypal</option>
+                                                <option value="Venmo">Venmo</option>
                                             </select>
                                         </div>
                                         <div class="col-4">
                                             <label for="cvv">Limite</label>
-                                            <input class="form-control" type="text" id="cvv">
+                                            <input class="form-control" type="text" id="limiteCartao">
                                         </div>
                                     </div>
                                 </div>
@@ -714,11 +683,7 @@
                                             <div class="row">
                                                 <div class="col p-1">
                                                     <select class="form-control" id="dia_fechamento">
-                                                        <option>01</option>
-                                                        <option>02</option>
-                                                        <option>03</option>
-                                                        <option>04</option>
-                                                        <option>...</option>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -730,11 +695,7 @@
                                             <div class="row">
                                                 <div class="col p-1">
                                                     <select class="form-control" id="dia_vencimento">
-                                                        <option>01</option>
-                                                        <option>02</option>
-                                                        <option>03</option>
-                                                        <option>04</option>
-                                                        <option>...</option>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -746,15 +707,15 @@
                                     <label for="usuario">Nome do cartão</label>
                                     <input class="form-control" type="text" id="nome_cartao">
                                 </div>
-
+                                
                                 <!-- textarea -->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="mensagem">Descrição (opcional)</label>
                                     <textarea class="form-control" id="mensagem" rows="3"></textarea>
-                                </div>
+                                </div> -->
 
                                 <div class="d-flex justify-content-center">
-                                    <button class="my-5" id="botao-salvar" style="border: none;">
+                                    <button class="my-5" id="botao-salvar" style="border: none;" onclick="salvarCartão()">
                                         <i class='bx bx-check salvar'></i>
                                     </button>
                                 </div>
