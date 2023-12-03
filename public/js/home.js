@@ -149,9 +149,9 @@ async function main() {
     col_icon.classList = 'col-1'
     li.appendChild(col_icon)
 
-    const icon = document.createElement("i")
-    icon.classList = 'bx item-icon'
-    col_icon.appendChild(icon)
+    const cardIcon = document.createElement("i")
+    cardIcon.classList = 'bx item-icon'
+    col_icon.appendChild(cardIcon)
 
     const col_card_info = document.createElement("div")
     col_card_info.classList = 'col-6'
@@ -211,23 +211,27 @@ async function main() {
 
     switch (card.card_brand) {
       case "Paypal":
-        icon.classList.add("bxl-paypal", "paypal")
+        cardIcon.classList.add("bxl-paypal", "paypal")
         break
       case "Mastercard":
-        icon.classList.add("bxl-mastercard", "mastercard")
+        cardIcon.classList.add("bxl-mastercard", "mastercard")
         break
       case "Visa":
-        icon.classList.add("bxl-visa", "visa")
+        cardIcon.classList.add("bxl-visa", "visa")
         break
       case "Venmo":
-        icon.classList.add("bxl-venmo", venmo)
+        cardIcon.classList.add("bxl-venmo", "venmo")
         break
       default:
-        icon.classList.add("bx-dollar")
+        cardIcon.classList.add("bx-dollar")
     }
 
     sem_dados_cartao.classList.add('d-none')
     lista_cartoes.appendChild(li)
+
+    // const a = document.createElement("p")
+    // a.innerText = card.card_name
+    // lista_cartoes.appendChild(a)
   })
 
 
@@ -237,7 +241,7 @@ async function main() {
 
   ul_cartoes.forEach(ul => {
     if (ul.offsetHeight > 320)
-      ul.style = " max-height: 320px; overflow-y: scroll; overflow-x: hidden;"
+      ul.style = "max-height: 320px; overflow-y: scroll; overflow-x: hidden;"
   })
 
   ul_contas.forEach(ul => {
