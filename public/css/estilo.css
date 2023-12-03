@@ -10,6 +10,7 @@
 body{
     height: 100vh;
     background: #dde2f0;
+    margin-bottom: 200px;
 }
 
 h4{
@@ -146,12 +147,12 @@ i{
 
 .balanco-porcentagem.receita{
     background-color: green;
-    width: 75%;
+    /* width: 75%; */
 }
 
 .balanco-porcentagem.despesa{
     background-color: red;
-    width: 25%;
+    /* width: 25%; */
 }
 
 .form-group .repetir{
