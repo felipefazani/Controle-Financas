@@ -64,6 +64,7 @@ async function main() {
   let total_gastos = 0
   let total_gastos_mercado = 0
   let total_gastos_shopping = 0
+  let total_gastos_roupas = 0
 
   transactions.filter(trans => trans.type == 0 && new Date(trans.date).getMonth() == currentDate.getMonth()).forEach(trans => {
     total_gastos += trans.value
@@ -81,10 +82,18 @@ async function main() {
     total_gastos_shopping += trans.value
   })
 
+  // Gastos com roupas
+  transactions.filter(trans => trans.id_category == "4" && new Date(trans.date).getMonth() == currentDate.getMonth()).forEach(trans => {
+    total_gastos_roupas += trans.value
+  })
+
+
   if(total_gastos_mercado != 0)
     criarGastoAtual("2", total_gastos_mercado, lista_gastos_mes_atual)
   if(total_gastos_shopping != 0)
     criarGastoAtual("3", total_gastos_shopping, lista_gastos_mes_atual)
+  if(total_gastos_roupas != 0)
+    criarGastoAtual("4", total_gastos_roupas, lista_gastos_mes_atual)
 
   function criarGastoAtual(id, transValue, lista_gastos_mes_atual){
     const sem_dados = document.getElementById("sem_dados_gastos_mes_atual")
