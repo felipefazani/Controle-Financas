@@ -2,6 +2,7 @@ async function getUserProfile() {
   await fetch("/auth/profile", { method: "get" })
     .then(response => response.text())
     .then(data => {
+      console.log("DATA: " + data)
       user = JSON.parse(data);
     })
 
